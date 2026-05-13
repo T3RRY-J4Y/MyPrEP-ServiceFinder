@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
-import { db } from "../firebase";
+import { supabase } from "../supabase";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FaqCta from "../components/FaqCta";
@@ -24,30 +23,30 @@ const FILTERS = [
 ];
 
 export default function Resources() {
-  const [resources, setResources] = useState([]);
-  const [loading,   setLoading]   = useState(true);
-  const [error,     setError]     = useState(null);
+  const [resources,    setResources]    = useState([]);
+  const [loading,      setLoading]      = useState(true);
+  const [error,        setError]        = useState(null);
   const [activeTab,    setActiveTab]    = useState(null);
   const [activeFilter, setActiveFilter] = useState(null);
   const [search,       setSearch]       = useState("");
 
   useEffect(() => {
     async function load() {
-      try {
-        const q    = query(collection(db, "resources"), orderBy("createdAt", "asc"));
-        const snap = await getDocs(q);
-        setResources(snap.docs.map(d => ({ id: d.id, ...d.data() })));
-      } catch (e) {
-        setError(e.message);
-      } finally {
-        setLoading(false);
-      }
+      const { data, error } = await supabase
+        .from("resources")
+        .select("*")
+        .order("created_at", { ascending: true });
+      if (error) setError(error.message);
+      else setResources(data || []);
+      setLoading(false);
     }
     load();
   }, []);
 
   const visible = resources.filter(r => {
-    const tags = r.tags || [];
+    const tags = typeof r.tags === "string"
+      ? JSON.parse(r.tags || "[]")
+      : (r.tags || []);
     const tabMatch    = !activeTab    || r.tab === activeTab;
     const filterMatch = !activeFilter || tags.includes(activeFilter);
     const searchMatch = !search       || r.title.toLowerCase().includes(search.toLowerCase());
@@ -103,9 +102,7 @@ export default function Resources() {
 
           <div className="resources" id="resourceContainer">
             {loading && (
-              <p style={{ textAlign: "center", padding: 40, width: "100%" }}>
-                Loading resources…
-              </p>
+              <p style={{ textAlign: "center", padding: 40, width: "100%" }}>Loading resources…</p>
             )}
             {error && (
               <p style={{ textAlign: "center", color: "#c00", padding: 40, width: "100%" }}>
@@ -117,9 +114,9 @@ export default function Resources() {
                 No resources match your filters.
               </p>
             )}
-            {visible.map(r => (
-              <a key={r.id} href={r.url} target="_blank" rel="noopener noreferrer">
-                <div className="card" data-tab={r.tab} data-tags={(r.tags || []).join(" ")}>
+            {visible.map((r, i) => (
+              <a key={i} href={r.url} target="_blank" rel="noopener noreferrer">
+                <div className="card">
                   <span className="card-title">{r.title}</span>
                 </div>
               </a>

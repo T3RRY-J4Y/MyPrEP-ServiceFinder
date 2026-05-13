@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+import { supabase } from "../../supabase";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
@@ -12,20 +11,20 @@ export default function AdminLogin() {
   const navigate = useNavigate();
   const { user }  = useAuth();
 
-  // Already logged in? Skip login screen
-  useEffect(() => { if (user) navigate("/admin", { replace: true }); }, [user]);
+  useEffect(() => {
+    if (user) navigate("/admin", { replace: true });
+  }, [user, navigate]);
 
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
     setBusy(true);
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate("/admin", { replace: true });
-    } catch {
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
       setError("Invalid email or password. Please try again.");
-    } finally {
       setBusy(false);
+    } else {
+      navigate("/admin", { replace: true });
     }
   }
 
