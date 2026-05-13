@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /resources/{docId} {
+      // Anyone can read — public resources page
+      allow read: if true;
+
+      // Only authenticated users with a verified App Check token can write
+      // (App Check ensures requests only come from your registered app/domain)
+      allow create, update, delete:
+        if request.auth != null
+        && request.auth.token != null
+        && request.app.token != null;   // enforces App Check
+    }
+
+    // Lock down everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
