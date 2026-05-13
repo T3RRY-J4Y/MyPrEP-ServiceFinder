@@ -1,7 +1,5 @@
 // ─────────────────────────────────────────────────────────────
 //  Firebase initialisation
-//  All values come from environment variables (VITE_ prefix).
-//  Never hard-code keys here — put them in your .env file.
 // ─────────────────────────────────────────────────────────────
 import { initializeApp } from "firebase/app";
 import { getAuth }       from "firebase/auth";
@@ -24,8 +22,6 @@ export const auth = getAuth(app);
 export const db   = getFirestore(app);
 
 // ── App Check (blocks requests from outside your domain) ──────
-// Set VITE_RECAPTCHA_SITE_KEY in your .env file
-// In dev, set self.FIREBASE_APPCHECK_DEBUG_TOKEN = true in console
 if (import.meta.env.VITE_RECAPTCHA_SITE_KEY) {
   initializeAppCheck(app, {
     provider: new ReCaptchaV3Provider(import.meta.env.VITE_RECAPTCHA_SITE_KEY),

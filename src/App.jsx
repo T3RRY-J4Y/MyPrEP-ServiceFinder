@@ -10,6 +10,7 @@ import Training   from "./pages/Training";
 import Faqs       from "./pages/Faqs";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDash  from "./pages/admin/AdminDash";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 // ── Route guard: only authenticated users reach admin ─────────
 function PrivateRoute({ children }) {
@@ -29,6 +30,7 @@ export default function App() {
         <Route path="/resources" element={<Resources />} />
         <Route path="/training"  element={<Training />} />
         <Route path="/faqs"      element={<Faqs />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
         {/* Admin */}
         <Route path="/admin/login" element={<AdminLogin />} />
