@@ -11,7 +11,6 @@ export default function Faqs() {
 
   const total = FAQ_METHODS.length;
 
-  // Build triple-looped cards array (same as original)
   const tripleCards = [];
   for (let i = 0; i < total * 3; i++) {
     tripleCards.push(FAQ_METHODS[i % total]);
@@ -34,7 +33,6 @@ export default function Faqs() {
       : "transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)";
     track.style.transform  = `translateX(${offset}px)`;
 
-    // Update active card
     track.querySelectorAll(".method-card").forEach((c, i) => {
       c.classList.toggle("active", i === positionIndex.current);
     });
@@ -75,7 +73,6 @@ export default function Faqs() {
     updateCarousel();
   }
 
-  // Initial setup + resize
   useEffect(() => {
     updateCarousel(true);
     const onResize = () => updateCarousel(true);
@@ -83,7 +80,6 @@ export default function Faqs() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Re-run carousel update whenever currentIndex changes
   useEffect(() => {
     updateCarousel();
   }, [currentIndex]);
@@ -145,9 +141,13 @@ export default function Faqs() {
             </div>
 
             {/* FAQ Accordion */}
-            <div className="questions-container" id="faqContainer">
+            <div className="questions-container" id="faqContainer" style={{ width: "100%", overflow: "hidden" }}>
               {method.faqs.map((faq, i) => (
-                <div key={i} className="question">
+                <div
+                  key={i}
+                  className="question"
+                  style={{ marginBottom: 10, overflow: "hidden" }}
+                >
                   <button
                     className="faq-btn"
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
@@ -160,7 +160,18 @@ export default function Faqs() {
                     />
                   </button>
                   {openFaq === i && (
-                    <p dangerouslySetInnerHTML={{ __html: faq.a }} />
+                    <div
+                      style={{
+                        padding: "16px 20px",
+                        lineHeight: 1.7,
+                        color: "#ffffff",
+                        background: "#3D80E8",
+                        fontSize: "0.95rem",
+                        borderRadius: "12px",
+                        marginTop: "8px",
+                      }}
+                      dangerouslySetInnerHTML={{ __html: faq.a }}
+                    />
                   )}
                 </div>
               ))}
