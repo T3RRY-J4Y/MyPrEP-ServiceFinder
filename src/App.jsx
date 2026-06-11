@@ -10,6 +10,9 @@ import Training   from "./pages/Training";
 import Faqs       from "./pages/Faqs";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDash  from "./pages/admin/AdminDash";
+import AdminFacilities from "./pages/admin/AdminFacilities";
+import ServiceFinder   from "./pages/ServiceFinder";
+import Quiz            from "./pages/Quiz";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 // ── Route guard: only authenticated users reach admin ─────────
@@ -30,10 +33,20 @@ export default function App() {
         <Route path="/resources" element={<Resources />} />
         <Route path="/training"  element={<Training />} />
         <Route path="/faqs"      element={<Faqs />} />
+        <Route path="/service-finder" element={<ServiceFinder />} />
+        <Route path="/quiz"           element={<Quiz />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
         {/* Admin */}
         <Route path="/admin/login" element={<AdminLogin />} />
+        <Route
+          path="/admin/facilities"
+          element={
+            <PrivateRoute>
+              <AdminFacilities />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/admin"
           element={

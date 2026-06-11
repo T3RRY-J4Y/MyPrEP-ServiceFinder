@@ -170,6 +170,7 @@ export default function AdminDash() {
           <span style={s.badge}>Admin CMS</span>
         </div>
         <div style={s.topRight}>
+          <Link to="/admin/facilities" style={s.ghostLink}>Facilities</Link>
           <Link to="/resources" style={s.ghostLink}>View Site</Link>
           <span style={s.userPill}>{user?.email}</span>
           <button onClick={handleLogout} style={s.ghostBtn}>Sign out</button>
