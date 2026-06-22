@@ -29,7 +29,7 @@ export default function CloudLayer({ count = 3 }) {
     return () => cancelAnimationFrame(rafId.current);
   }, []);
 
-  const imgs = ["/img/cloud1.png", "/img/cloud2.png", "/img/cloud3.png"];
+  const imgs = ["/img/cloud1.webp", "/img/cloud2.webp", "/img/cloud3.webp"];
   const classes = ["cloud cloud1", "cloud cloud2", "cloud cloud3"];
 
   return (

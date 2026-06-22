@@ -1,19 +1,23 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 
-// Pages
-import Home       from "./pages/Home";
-import Methods    from "./pages/Methods";
-import PvPvA      from "./pages/PvPvA";
-import Resources  from "./pages/Resources";
-import Training   from "./pages/Training";
-import Faqs       from "./pages/Faqs";
-import AdminLogin from "./pages/admin/AdminLogin";
-import AdminDash  from "./pages/admin/AdminDash";
-import AdminFacilities from "./pages/admin/AdminFacilities";
-import ServiceFinder   from "./pages/ServiceFinder";
-import Quiz            from "./pages/Quiz";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
+// Home is the landing page — keep it eager so it paints immediately.
+import Home from "./pages/Home";
+
+// Everything else is code-split so the homepage bundle stays small.
+// The Service Finder in particular drags in Leaflet + markercluster + Papa Parse.
+const Methods         = lazy(() => import("./pages/Methods"));
+const PvPvA           = lazy(() => import("./pages/PvPvA"));
+const Resources       = lazy(() => import("./pages/Resources"));
+const Training        = lazy(() => import("./pages/Training"));
+const Faqs            = lazy(() => import("./pages/Faqs"));
+const AdminLogin      = lazy(() => import("./pages/admin/AdminLogin"));
+const AdminDash       = lazy(() => import("./pages/admin/AdminDash"));
+const AdminFacilities = lazy(() => import("./pages/admin/AdminFacilities"));
+const ServiceFinder   = lazy(() => import("./pages/ServiceFinder"));
+const Quiz            = lazy(() => import("./pages/Quiz"));
+const PrivacyPolicy   = lazy(() => import("./pages/PrivacyPolicy"));
 
 // ── Route guard: only authenticated users reach admin ─────────
 function PrivateRoute({ children }) {
@@ -24,7 +28,7 @@ function PrivateRoute({ children }) {
 
 export default function App() {
   return (
-    <>
+    <Suspense fallback={<div className="page-loading">Loading…</div>}>
       <Routes>
         {/* Public */}
         <Route path="/"          element={<Home />} />
@@ -59,6 +63,6 @@ export default function App() {
         {/* Catch-all */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </>
+    </Suspense>
   );
 }

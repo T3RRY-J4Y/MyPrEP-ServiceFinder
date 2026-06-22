@@ -58,7 +58,7 @@ export default function Resources() {
       <Navbar />
       <section className="pvpva-section">
         <div className="header-image-container pvpva-header-overlay">
-          <img src="/img/mbackground.png" alt="Resources Header" className="header-image"
+          <img src="/img/mbackground.webp" alt="Resources Header" className="header-image"
                style={{ width: "100%", maxHeight: 300, objectFit: "cover" }} />
           <div className="pvpva-header-text">
             <h1 className="pvpva-title">Resources</h1>

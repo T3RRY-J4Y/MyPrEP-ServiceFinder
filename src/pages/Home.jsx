@@ -3,45 +3,46 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import CloudLayer from "../components/CloudLayer";
 import Footer from "../components/Footer";
+import CrispChat from "../components/CrispChat";
 
 const SLIDES = [
   {
     id: "prep",
     label: "Oral PrEP",
-    thumb: "/img/pills.png",
-    bg: "/img/newBackground.png",
+    thumb: "/img/pills.webp",
+    bg: "/img/newBackground.webp",
     heading: "Oral PrEP",
     body: "Oral PrEP is a pill containing antiretroviral (ARV) medication that you can take if you are HIV-negative to prevent HIV.",
   },
   {
     id: "inject",
     label: "Injectable PrEP",
-    thumb: "/img/inject.png",
-    bg: "/img/newBackground.png",
+    thumb: "/img/inject.webp",
+    bg: "/img/newBackground.webp",
     heading: "Lenacapavir",
     body: "Two injections given every 6 months to prevent getting HIV from any kind of exposure. Ask your healthcare provider if this method is available at your clinic.",
   },
   {
     id: "condom",
     label: "Condoms",
-    thumb: "/img/condom.png",
-    bg: "/img/newBackground.png",
+    thumb: "/img/condom.webp",
+    bg: "/img/newBackground.webp",
     heading: "Condoms",
     body: "Condoms are a barrier method you can use during sex to prevent getting HIV, other STIs, and unintended pregnancy.",
   },
   {
     id: "ring",
     label: "PrEP Ring",
-    thumb: "/img/ring.png",
-    bg: "/img/newBackground.png",
+    thumb: "/img/ring.webp",
+    bg: "/img/newBackground.webp",
     heading: "Dapivirine Ring (PrEP Ring)",
     body: "A flexible silicone ring worn in the vagina and replaced every 28 days to prevent getting HIV during receptive vaginal sex.",
   },
   {
     id: "cab",
     label: "CAB-LA",
-    thumb: "/img/cab.png",
-    bg: "/img/newBackground.png",
+    thumb: "/img/cab.webp",
+    bg: "/img/newBackground.webp",
     heading: "Long-acting cabotegravir (CAB-LA)",
     body: "An injection received every two months to prevent getting HIV from any kind of exposure. Ask your healthcare provider if this method is available at your clinic.",
   },
@@ -102,11 +103,13 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      <CrispChat />
+
 
       {/* SLIDER */}
       <div className="slider">
         <div className="hero-image">
-  <img src="/img/newBackground.png" alt="City Background" />
+  <img src="/img/newBackground.webp" alt="City Background" />
 </div>
 
 <CloudLayer count={3} />
@@ -157,7 +160,7 @@ export default function Home() {
         {/* INFO SECTION */}
         <section className="info-section">
           <div className="info-image">
-            <img src="/img/woman.png" alt="Info Image" />
+            <img src="/img/woman.webp" alt="Info Image" loading="lazy" decoding="async" />
           </div>
           <div className="info-content">
             <h2 className="info-title">Is PrEP right for me?</h2>
@@ -193,12 +196,12 @@ export default function Home() {
           <div className="right-column">
             <div className="icon-grid">
               {[
-                { img: "/img/prep.png", label: "PrEP", tip: "PrEP is when ARVs are taken before exposure to HIV, to prevent getting HIV." },
-                { img: "/img/pep.png",  label: "PEP",  tip: "PEP is when ARVs are taken after exposure to HIV, to prevent HIV (within 72 hours and taken for 28 days only)." },
-                { img: "/img/art.png",  label: "ART",  tip: "ART is when ARVs are used to treat a person living with HIV, and is taken lifelong." },
+                { img: "/img/prep.webp", label: "PrEP", tip: "PrEP is when ARVs are taken before exposure to HIV, to prevent getting HIV." },
+                { img: "/img/pep.webp",  label: "PEP",  tip: "PEP is when ARVs are taken after exposure to HIV, to prevent HIV (within 72 hours and taken for 28 days only)." },
+                { img: "/img/art.webp",  label: "ART",  tip: "ART is when ARVs are used to treat a person living with HIV, and is taken lifelong." },
               ].map(({ img, label, tip }) => (
                 <div key={label} className="icon-item">
-                  <img src={img} alt={label} />
+                  <img src={img} alt={label} loading="lazy" decoding="async" />
                   <span className="icon-title">{label}</span>
                   <div className="popup-balloon">{tip}</div>
                 </div>
@@ -217,13 +220,13 @@ export default function Home() {
             </p>
             <div className="icon-cards">
               {[
-                { img: "/img/shield.png", label: "Sexual and reproductive health services" },
-                { img: "/img/clinic.png", label: "Healthcare Facilities" },
-                { img: "/img/float.png",  label: "Support" },
+                { img: "/img/shield.webp", label: "Sexual and reproductive health services" },
+                { img: "/img/clinic.webp", label: "Healthcare Facilities" },
+                { img: "/img/float.webp",  label: "Support" },
               ].map(({ img, label }) => (
                 <div key={label} className="icon-card">
                   <div className="icon-circle">
-                    <img src={img} alt={label} />
+                    <img src={img} alt={label} loading="lazy" decoding="async" />
                   </div>
                   <p className="icon-title">{label}</p>
                 </div>
@@ -254,14 +257,14 @@ export default function Home() {
             </div>
             <div className="features-grid">
               {[
-                { href: "/resources#policy",    img: "/img/policy.png",    title: "Implementation Guidelines", text: "Official guidance that informs HIV prevention and sexual and reproductive health services." },
-                { href: "/resources#job-aids",  img: "/img/jobaids.png",   title: "Job Aids",                  text: "Practical tools that support healthcare providers and implementers in delivering services." },
-                { href: "/resources#iec",       img: "/img/iec.png",       title: "IEC Materials",             text: "Clear, user-friendly information to support awareness, understanding, and informed decision-making." },
-                { href: "/resources#community", img: "/img/community.png", title: "Community Engagement",      text: "Resources that support dialogue, outreach, and community-led HIV prevention activities." },
+                { href: "/resources#policy",    img: "/img/policy.webp",    title: "Implementation Guidelines", text: "Official guidance that informs HIV prevention and sexual and reproductive health services." },
+                { href: "/resources#job-aids",  img: "/img/jobaids.webp",   title: "Job Aids",                  text: "Practical tools that support healthcare providers and implementers in delivering services." },
+                { href: "/resources#iec",       img: "/img/iec.webp",       title: "IEC Materials",             text: "Clear, user-friendly information to support awareness, understanding, and informed decision-making." },
+                { href: "/resources#community", img: "/img/community.webp", title: "Community Engagement",      text: "Resources that support dialogue, outreach, and community-led HIV prevention activities." },
               ].map(({ href, img, title, text }) => (
                 <Link key={title} to={href} className="feature-link">
                   <div className="feature-card">
-                    <img src={img} alt={title} />
+                    <img src={img} alt={title} loading="lazy" decoding="async" />
                     <div className="feature-card-content">
                       <h4 className="feature-card-title">{title}</h4>
                       <p className="feature-card-text">{text}</p>

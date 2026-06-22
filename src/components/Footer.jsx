@@ -4,9 +4,9 @@ export default function Footer() {
       <div className="footer-container">
         <div className="footer-content">
           <div className="footer-partners">
-            <a href="#"><img src="/img/partner1.png" alt="Partner 1" /></a>
+            <a href="#"><img src="/img/partner1.webp" alt="Partner 1" /></a>
             <a href="https://bwisehealth.com/" target="_blank" rel="noopener noreferrer">
-              <img src="/img/partner2.png" alt="Partner 2" />
+              <img src="/img/partner2.webp" alt="Partner 2" />
             </a>
           </div>
           <div className="footer-social">

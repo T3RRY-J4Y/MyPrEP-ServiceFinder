@@ -9,7 +9,7 @@ const bg     = "linear-gradient(180deg, #7ab3ef 0%, #c7ddf5 100%)";
 // ── Method detail data ────────────────────────────────────────
 const METHOD_DETAILS = {
   oral: {
-    label: "Oral PrEP", icon: "/img/pills.png", color: "#3D80E8",
+    label: "Oral PrEP", icon: "/img/pills.webp", color: "#3D80E8",
     what: "Oral PrEP is a pill containing antiretroviral medication (ARVs), taken by HIV-negative people to prevent getting HIV. It contains two anti-HIV medicines: emtricitabine and tenofovir.",
     how: "When taken every day, the medication prevents the cells in your body from being infected with HIV. It can reduce the likelihood of getting HIV by more than 90%.",
     used: "One pill every day for as long as you need it. After 7 days of daily use, you are preventing infection. When you want to stop, continue taking one pill a day for 7 days after your last exposure.",
@@ -34,7 +34,7 @@ const METHOD_DETAILS = {
     ],
   },
   ring: {
-    label: "PrEP Ring (DVR)", icon: "/img/ring.png", color: "#EBA614",
+    label: "PrEP Ring (DVR)", icon: "/img/ring.webp", color: "#EBA614",
     what: "The PrEP ring is a flexible silicone ring containing dapivirine (an ARV). It is inserted into the vagina and worn for 28 days to reduce the chances of acquiring HIV during vaginal sex.",
     how: "The ring slowly releases the ARV dapivirine into vaginal tissues, providing continuous protection from HIV without needing to remember a daily pill.",
     used: "Insert the ring into the vagina and leave it for 28 days. Replace with a new ring every 28 days. The ring takes about 24 hours to reach maximum protection — use condoms or abstain during this time.",
@@ -59,7 +59,7 @@ const METHOD_DETAILS = {
     ],
   },
   cabla: {
-    label: "CAB-LA Injection", icon: "/img/inject.png", color: "#3D80E8",
+    label: "CAB-LA Injection", icon: "/img/inject.webp", color: "#3D80E8",
     what: "CAB-LA is a PrEP injection containing cabotegravir (an ARV), taken by HIV-negative people to prevent HIV. It is given by a healthcare provider every 2 months.",
     how: "The medication slowly releases into your body and bloodstream after the injection, protecting your cells from HIV infection. In most people, protection begins within one week of the first injection.",
     used: "Injected into the buttocks by a healthcare provider. First injection on Day 1, second after 1 month, then every 2 months. You must continue clinic visits every 2 months for as long as you need protection.",
@@ -84,7 +84,7 @@ const METHOD_DETAILS = {
     ],
   },
   len: {
-    label: "Lenacapavir (LEN)", icon: "/img/inject.png", color: "#7c3aed",
+    label: "Lenacapavir (LEN)", icon: "/img/inject.webp", color: "#7c3aed",
     what: "Lenacapavir is a long-acting HIV prevention injection given every 6 months. After an initial start phase with tablets and injections, it provides highly effective protection against HIV.",
     how: "Lenacapavir stops HIV from multiplying in the body. It is slowly released into your bloodstream after injection, preventing HIV from establishing an infection.",
     used: "Day 1: Two tablets + two injections. Day 2: Two tablets at home. Then two injections every 6 months. No tablets are needed after the start phase.",
@@ -113,7 +113,7 @@ const METHOD_DETAILS = {
 // ── Method info ───────────────────────────────────────────────
 const METHOD_INFO = [
   {
-    id: "pills", label: "Pills", icon: "/img/pills.png",
+    id: "pills", label: "Pills", icon: "/img/pills.webp",
     content: {
       title: "Oral PrEP", name: "TDF/FTC",
       tagline: "Very effective at preventing HIV from any kind of exposure.",
@@ -127,7 +127,7 @@ const METHOD_INFO = [
     }
   },
   {
-    id: "rings", label: "Rings", icon: "/img/ring.png",
+    id: "rings", label: "Rings", icon: "/img/ring.webp",
     content: {
       title: "PrEP Ring (DVR)", name: "Dapivirine Vaginal Ring",
       tagline: "Reduces the risk of HIV during vaginal sex by 35–50%.",
@@ -141,7 +141,7 @@ const METHOD_INFO = [
     }
   },
   {
-    id: "injections", label: "Injections", icon: "/img/inject.png",
+    id: "injections", label: "Injections", icon: "/img/inject.webp",
     content: {
       title: "Injectable PrEP", name: "CAB-LA / Lenacapavir",
       tagline: "More than 90–96% effective at preventing HIV.",
@@ -168,10 +168,10 @@ const QUESTIONS = [
 ];
 
 const RESULTS = {
-  oral:  { label: "Oral PrEP",        icon: "/img/pills.png",  color: "#3D80E8", description: "Oral PrEP is a daily pill that is very effective at preventing HIV from any kind of exposure. It is widely available at public clinics across South Africa and can be started and stopped easily.", suitable: "Best for people comfortable with a daily routine who want a flexible, well-established option." },
-  ring:  { label: "PrEP Ring (DVR)",  icon: "/img/ring.png",   color: "#EBA614", description: "The PrEP ring is a discreet silicone ring worn in the vagina for 28 days. It prevents HIV during vaginal sex and requires no daily action — just a monthly replacement.", suitable: "Best for people who want a discreet, low-maintenance option for vaginal sex." },
-  cabla: { label: "CAB-LA Injection", icon: "/img/inject.png", color: "#3D80E8", description: "CAB-LA is an injection given every 2 months that is more than 90% effective. No daily pill needed — just a clinic visit every 2 months.", suitable: "Best for people who prefer not taking a daily pill and can visit a clinic every 2 months." },
-  len:   { label: "Lenacapavir (LEN)",icon: "/img/inject.png", color: "#7c3aed", description: "Lenacapavir is a long-acting injection given every 6 months — the least frequent option. It is more than 96% effective at preventing HIV.", suitable: "Best for people who want maximum convenience with minimal clinic visits." },
+  oral:  { label: "Oral PrEP",        icon: "/img/pills.webp",  color: "#3D80E8", description: "Oral PrEP is a daily pill that is very effective at preventing HIV from any kind of exposure. It is widely available at public clinics across South Africa and can be started and stopped easily.", suitable: "Best for people comfortable with a daily routine who want a flexible, well-established option." },
+  ring:  { label: "PrEP Ring (DVR)",  icon: "/img/ring.webp",   color: "#EBA614", description: "The PrEP ring is a discreet silicone ring worn in the vagina for 28 days. It prevents HIV during vaginal sex and requires no daily action — just a monthly replacement.", suitable: "Best for people who want a discreet, low-maintenance option for vaginal sex." },
+  cabla: { label: "CAB-LA Injection", icon: "/img/inject.webp", color: "#3D80E8", description: "CAB-LA is an injection given every 2 months that is more than 90% effective. No daily pill needed — just a clinic visit every 2 months.", suitable: "Best for people who prefer not taking a daily pill and can visit a clinic every 2 months." },
+  len:   { label: "Lenacapavir (LEN)",icon: "/img/inject.webp", color: "#7c3aed", description: "Lenacapavir is a long-acting injection given every 6 months — the least frequent option. It is more than 96% effective at preventing HIV.", suitable: "Best for people who want maximum convenience with minimal clinic visits." },
 };
 
 function getResults(answers) {
@@ -196,11 +196,11 @@ function MethodDetailPage({ methodKey, onBack }) {
       {/* Hero */}
       <div style={{
         background: d.color,
-        padding: "120px 20px 40px",
+        padding: "180px 20px 40px",
         textAlign: "center",
         position: "relative", overflow: "hidden",
       }}>
-        <img src="/img/mbackground.png" alt="" style={{
+        <img src="/img/mbackground.webp" alt="" style={{
           position: "absolute", inset: 0, width: "100%", height: "100%",
           objectFit: "cover", opacity: 0.15,
         }} />
@@ -359,7 +359,7 @@ function MethodDetailPage({ methodKey, onBack }) {
                   {faq.q}
                 </span>
                 <img
-                  src="/img/arrow.png"
+                  src="/img/arrow.webp"
                   alt="toggle"
                   style={{
                     width: 18, height: 18, objectFit: "contain", flexShrink: 0,
@@ -429,7 +429,7 @@ function LandingPage({ onStart }) {
   return (
     <div style={{ background: bg, minHeight: "100vh" }}>
       <div style={{ background: "linear-gradient(180deg, #5a9de0 0%, #7ab3ef 100%)", padding: "180px 20px 50px", textAlign: "center", position: "relative", overflow: "hidden" }}>
-        <img src="/img/mbackground.png" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.25 }} />
+        <img src="/img/mbackground.webp" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.25 }} />
         <div style={{ position: "relative", zIndex: 1 }}>
           <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "1rem", marginBottom: 12 }}>Before taking the quiz, learn about your options:</p>
           <h1 style={{ fontSize: "clamp(2.125rem, 4.5vw, 2.625rem)", fontWeight: 800, color: "#fff", marginBottom: 20, lineHeight: 1.2 }}>
@@ -456,7 +456,7 @@ function LandingPage({ onStart }) {
                 <img src={m.icon} alt={m.label} style={{ width: 32, height: 32, objectFit: "contain", filter: open === m.id ? "brightness(0) invert(1)" : "none" }} />
                 <span>{m.content.title}</span>
               </div>
-              <img src="/img/arrow.png" alt="Toggle" style={{ width: 20, height: 20, objectFit: "contain", transform: open === m.id ? "rotate(270deg)" : "rotate(90deg)", transition: "transform .3s", filter: open === m.id ? "brightness(0) invert(1)" : "none" }} />
+              <img src="/img/arrow.webp" alt="Toggle" style={{ width: 20, height: 20, objectFit: "contain", transform: open === m.id ? "rotate(270deg)" : "rotate(90deg)", transition: "transform .3s", filter: open === m.id ? "brightness(0) invert(1)" : "none" }} />
             </div>
             {open === m.id && (
               <div style={{ background: "#fff", border: "2px solid " + blue, borderTop: "none", borderRadius: "0 0 14px 14px", padding: "20px 24px" }}>
@@ -510,7 +510,7 @@ function QuizPage({ onBack, onSubmit }) {
 
   return (
     <div style={{ background: bg, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-      <div style={{ background: "rgba(255,255,255,0.3)", position: "sticky", top: 0, zIndex: 50, padding: "90px 20px 12px", backdropFilter: "blur(8px)" }}>
+      <div style={{ background: "rgba(255,255,255,0.3)", position: "sticky", top: 0, zIndex: 50, padding: "180px 20px 12px", backdropFilter: "blur(8px)" }}>
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
           <div style={{ display: "flex", justifyContent: "space-between", color: "#fff", fontWeight: 700, fontSize: "0.92rem", marginBottom: 8 }}>
             <span>Question {step + 1} of {QUESTIONS.length}</span>
@@ -557,10 +557,9 @@ function ResultsPage({ answers, onBack, onRetake, onViewDetail }) {
   const results = getResults(answers);
   return (
     <div style={{ background: bg, minHeight: "100vh" }}>
-      <div style={{ background: "linear-gradient(180deg, #5a9de0 0%, #7ab3ef 100%)", padding: "120px 20px 40px", textAlign: "center", position: "relative", overflow: "hidden" }}>
-        <img src="/img/mbackground.png" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.25 }} />
+      <div style={{ background: "linear-gradient(180deg, #5a9de0 0%, #7ab3ef 100%)", padding: "180px 20px 40px", textAlign: "center", position: "relative", overflow: "hidden" }}>
+        <img src="/img/mbackground.webp" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.25 }} />
         <div style={{ position: "relative", zIndex: 1 }}>
-          <div style={{ fontSize: "3rem", marginBottom: 12 }}>🎉</div>
           <h1 style={{ fontSize: "clamp(2rem, 4.5vw, 2.625rem)", fontWeight: 800, color: "#fff", marginBottom: 8 }}>Your Results</h1>
           <p style={{ color: "rgba(255,255,255,0.9)", fontSize: "1rem" }}>
             {results.length === 1 ? "Based on your answers, this method may work best for you:" : "Based on your answers, these methods may work for you:"}

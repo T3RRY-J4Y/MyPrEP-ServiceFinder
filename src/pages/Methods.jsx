@@ -5,11 +5,11 @@ import FaqCta from "../components/FaqCta";
 import CloudLayer from "../components/CloudLayer";
 
 const METHODS = [
-  { id: "prep",   label: "Oral PrEP",       icon: "/img/pills.png" },
-  { id: "inject", label: "Injectable PrEP",  icon: "/img/inject.png" },
-  { id: "condom", label: "Condom",           icon: "/img/condom.png" },
-  { id: "ring",   label: "PrEP Ring",        icon: "/img/ring.png" },
-  { id: "cab",    label: "CAB-LA",           icon: "/img/cab.png" },
+  { id: "prep",   label: "Oral PrEP",       icon: "/img/pills.webp" },
+  { id: "inject", label: "Injectable PrEP",  icon: "/img/inject.webp" },
+  { id: "condom", label: "Condom",           icon: "/img/condom.webp" },
+  { id: "ring",   label: "PrEP Ring",        icon: "/img/ring.webp" },
+  { id: "cab",    label: "CAB-LA",           icon: "/img/cab.webp" },
 ];
 
 export default function Methods() {
@@ -70,12 +70,12 @@ function OralPrep({ active }) {
           </p>
         </div>
         <div className="method-right">
-          <img src="/img/preppic.png" alt="Oral PrEP" />
+          <img src="/img/preppic.webp" alt="Oral PrEP" />
         </div>
       </div>
       <div className="method-extra">
         <div className="extra-left">
-          <img src="/img/oralPrepIllust.png" alt="Oral PrEP Illustration" />
+          <img src="/img/oralPrepIllust.webp" alt="Oral PrEP Illustration" />
         </div>
         <div className="extra-right">
           <div className="extra-item">
@@ -124,13 +124,13 @@ function Len({ active }) {
           </p>
         </div>
         <div className="method-right">
-          <img src="/img/len1.png" alt="Injectable PrEP" />
-          <img src="/img/len2.png" alt="Injectable PrEP" />
+          <img src="/img/len1.webp" alt="Injectable PrEP" />
+          <img src="/img/len2.webp" alt="Injectable PrEP" />
         </div>
       </div>
       <div className="starting-len">
         <h3 className="starting-len-title">Starting LEN</h3>
-        <img src="/img/LEN.png" alt="Starting LEN" className="starting-len-img" />
+        <img src="/img/LEN.webp" alt="Starting LEN" className="starting-len-img" />
       </div>
     </div>
   );
@@ -193,7 +193,7 @@ Effectiveness depends on correct use from start to finish, every time you have s
       <div className="method-containers">
         <div className="method-container">
           <h3 className="container-title">Internal Condom</h3>
-          <img src="/img/condom1.png" alt="Internal Condom" />
+          <img src="/img/condom1.webp" alt="Internal Condom" />
           <ul className="container-list">
             <li>Sometimes called female condoms</li>
             <li>Worn inside the vagina or anus</li>
@@ -201,7 +201,7 @@ Effectiveness depends on correct use from start to finish, every time you have s
         </div>
         <div className="method-container">
           <h3 className="container-title">External Condom</h3>
-          <img src="/img/condom2.png" alt="External Condom" />
+          <img src="/img/condom2.webp" alt="External Condom" />
           <ul className="container-list">
             <li>Sometimes called male condoms</li>
             <li>Worn over the penis</li>
@@ -218,7 +218,7 @@ Effectiveness depends on correct use from start to finish, every time you have s
           <div key={item.id} className={`condom-item${openItem === item.id ? " active" : ""}`}>
             <div className="condom-header" onClick={() => setOpenItem(openItem === item.id ? null : item.id)}>
               <div className="icon-title-wrapper"><span>{item.q}</span></div>
-              <img src="/img/arrow.png" alt="arrow" className="d-arrow" />
+              <img src="/img/arrow.webp" alt="arrow" className="d-arrow" />
             </div>
             <div className="condom-content">
               <p style={{ whiteSpace: "pre-line" }}>{item.a}</p>
@@ -285,7 +285,7 @@ function PrEPRing({ active }) {
         <p className="method-text">
           Some users may experience urinary tract infection, discomfort in the vagina or lower part of the belly, or itching, which are possible side effects of using the Ring. These side effects are mostly mild and go away after a few days without needing to remove the Ring. You should not be able to feel the Ring if it is inserted correctly. Visit your clinic if you continue to experience discomfort while using the Ring.
         </p>
-        <img src="/img/dvr.png" alt="PrEP Ring" />
+        <img src="/img/dvr.webp" alt="PrEP Ring" />
       </div>
 
       <div className="method-extra">
@@ -305,7 +305,7 @@ function PrEPRing({ active }) {
         </div>
         <div className="extra-left">
   <div className="image-wrapper">
-    <img src="/img/dvr1.png" alt="PrEP Ring" style={{ maxWidth: "100%", height: "auto", display: "block" }} />
+    <img src="/img/dvr1.webp" alt="PrEP Ring" style={{ maxWidth: "100%", height: "auto", display: "block" }} />
   </div>
 </div>
       </div>
@@ -345,13 +345,13 @@ function CabLA({ active }) {
           </p>
         </div>
         <div className="method-right">
-          <img src="/img/cab1.png" alt="CAB-LA" />
+          <img src="/img/cab1.webp" alt="CAB-LA" />
         </div>
       </div>
 
       <div className="method-extra">
         <div className="extra-left">
-          <img src="/img/cab2.png" alt="CAB-LA" />
+          <img src="/img/cab2.webp" alt="CAB-LA" />
         </div>
         <div className="extra-right">
           <div className="extra-item">

@@ -93,7 +93,7 @@ export default function Faqs() {
       <body className="faqs-page">
         <header>
           <div className="cloud cloud1">
-            <img src="/img/cloud1.png" alt="" />
+            <img src="/img/cloud1.webp" alt="" />
           </div>
         </header>
 
@@ -110,7 +110,7 @@ export default function Faqs() {
                 aria-label="Previous"
               >
                 <img
-                  src="/img/arrow.png"
+                  src="/img/arrow.webp"
                   alt="Previous"
                   style={{ transform: "rotate(180deg)" }}
                 />
@@ -136,7 +136,7 @@ export default function Faqs() {
                 onClick={goNext}
                 aria-label="Next"
               >
-                <img src="/img/arrow.png" alt="Next" />
+                <img src="/img/arrow.webp" alt="Next" />
               </button>
             </div>
 
@@ -154,7 +154,7 @@ export default function Faqs() {
                   >
                     <span className="faq-text">{faq.q}</span>
                     <img
-                      src="/img/arrow.png"
+                      src="/img/arrow.webp"
                       className={`faq-arrow${openFaq === i ? " rotate" : ""}`}
                       alt="Toggle"
                     />

@@ -31,7 +31,7 @@ export default function AdminLogin() {
   return (
     <div style={styles.screen}>
       <div style={styles.card}>
-        <img src="/img/logo.png" alt="MyPrEP" style={styles.logo} />
+        <img src="/img/logo.webp" alt="MyPrEP" style={styles.logo} />
         <h1 style={styles.h1}>Admin Login</h1>
         <p style={styles.sub}>Sign in to manage the Resources page</p>
 

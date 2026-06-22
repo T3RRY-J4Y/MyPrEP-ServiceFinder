@@ -33,7 +33,7 @@ export default function ServiceFinder() {
   const [expanded, setExpanded] = useState(new Set());
   const [q,        setQ]        = useState("");
   const [here,     setHere]     = useState(null);
-  const [locMsg,   setLocMsg]   = useState("Location is optional — browse everything without it.");
+  const [locMsg,   setLocMsg]   = useState("Location is optional - browse everything without it.");
   const [locBusy,  setLocBusy]  = useState(false);
   const [page,     setPage]     = useState(1);
   const [talkOpen, setTalkOpen] = useState(false);
@@ -66,9 +66,24 @@ export default function ServiceFinder() {
   useEffect(() => {
     if (!mapEl.current || mapRef.current) return;
     const map = L.map(mapEl.current).setView(SA_CENTER, 5);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+
+    // base map styles the user can switch between
+    const streets = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19, attribution: "&copy; OpenStreetMap contributors",
-    }).addTo(map);
+    });
+    const satellite = L.tileLayer(
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+      { maxZoom: 19, attribution: "Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics" }
+    );
+    const terrain = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+      maxZoom: 17, attribution: "Map data &copy; OpenStreetMap contributors, SRTM | Style &copy; OpenTopoMap (CC-BY-SA)",
+    });
+    streets.addTo(map);
+    L.control.layers(
+      { "Map": streets, "Satellite": satellite, "Terrain": terrain },
+      null,
+      { position: "topright" }
+    ).addTo(map);
     cluster.current = L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 46 });
     map.addLayer(cluster.current);
     mapRef.current = map;
@@ -168,7 +183,7 @@ export default function ServiceFinder() {
   /* ── geolocation (optional, graceful) ── */
   function locate() {
     if (!navigator.geolocation) {
-      setLocMsg("Your browser does not support location — showing all facilities A to Z.");
+      setLocMsg("Your browser does not support location - showing all facilities A to Z.");
       return;
     }
     setLocBusy(true);
@@ -178,7 +193,7 @@ export default function ServiceFinder() {
         const pos = { lat: p.coords.latitude, lng: p.coords.longitude };
         setHere(pos);
         setPage(1);
-        setLocMsg("Location found — facilities sorted by distance.");
+        setLocMsg("Location found - facilities sorted by distance.");
         setLocBusy(false);
         const map = mapRef.current;
         if (map) {
@@ -189,7 +204,7 @@ export default function ServiceFinder() {
         }
       },
       () => {
-        setLocMsg("No problem — you can still browse and search all facilities.");
+        setLocMsg("No problem - you can still browse and search all facilities.");
         setLocBusy(false);
       },
       { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 }
@@ -279,7 +294,7 @@ export default function ServiceFinder() {
           <div className="sf-mapcol">
             <div ref={mapEl} className="sf-map" aria-label="Map of facilities" />
             <div className="sf-hint"><b>Tip:</b> tap a pin to see the facility, or pick a service
-              on the left to narrow the map. Numbered circles are groups - tap to zoom in.</div>
+              on the left to narrow the map. Numbered circles are groups — tap to zoom in.</div>
           </div>
 
           <section className="sf-res" aria-label="Facility results">

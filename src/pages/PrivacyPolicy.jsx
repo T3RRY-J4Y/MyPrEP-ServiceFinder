@@ -8,7 +8,7 @@ export default function PrivacyPolicy() {
       <section className="pvpva-section">
         <div className="header-image-container pvpva-header-overlay">
           <img
-            src="/img/mbackground.png"
+            src="/img/mbackground.webp"
             alt="Privacy Policy"
             className="header-image"
             style={{ width: "100%", maxHeight: 300, objectFit: "cover" }}

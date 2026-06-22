@@ -131,7 +131,7 @@ export default function AdminFacilities() {
     <div style={s.bg}>
       <div style={s.topbar}>
         <div style={s.topLeft}>
-          <img src="/img/logo.png" alt="MyPrEP" style={{ height: 38 }} />
+          <img src="/img/logo.webp" alt="MyPrEP" style={{ height: 38 }} />
           <span style={s.badge}>Service Finder — Admin</span>
         </div>
         <div style={s.topRight}>
