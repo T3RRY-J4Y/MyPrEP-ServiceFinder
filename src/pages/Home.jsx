@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import CloudLayer from "../components/CloudLayer";
 import Footer from "../components/Footer";
@@ -105,7 +105,6 @@ export default function Home() {
     <>
       <Navbar />
       <CrispChat />
-
 
       {/* SLIDER */}
       <div className="slider">
