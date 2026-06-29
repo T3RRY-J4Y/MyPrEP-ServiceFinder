@@ -15,6 +15,7 @@ const Faqs            = lazy(() => import("./pages/Faqs"));
 const AdminLogin      = lazy(() => import("./pages/admin/AdminLogin"));
 const AdminDash       = lazy(() => import("./pages/admin/AdminDash"));
 const AdminFacilities = lazy(() => import("./pages/admin/AdminFacilities"));
+const AdminHome       = lazy(() => import("./pages/admin/AdminHome"));
 const ServiceFinder   = lazy(() => import("./pages/ServiceFinder"));
 const Quiz            = lazy(() => import("./pages/Quiz"));
 const PrivacyPolicy   = lazy(() => import("./pages/PrivacyPolicy"));
