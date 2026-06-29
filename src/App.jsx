@@ -55,6 +55,14 @@ export default function App() {
           path="/admin"
           element={
             <PrivateRoute>
+              <AdminHome />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/resources"
+          element={
+            <PrivateRoute>
               <AdminDash />
             </PrivateRoute>
           }

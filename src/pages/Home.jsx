@@ -49,6 +49,7 @@ const SLIDES = [
 ];
 
 export default function Home() {
+  const navigate = useNavigate();
   const [active, setActive] = useState(0);
   const timerRef = useRef(null);
   const touchStart = useRef(0);
@@ -171,7 +172,7 @@ export default function Home() {
             </p>
             <button
               className="info-btn"
-              onClick={() => window.open("https://prepmethodquiz.web.app/#/", "_blank")}
+              onClick={() => navigate("/quiz")}
             >
               Learn More
             </button>
@@ -233,14 +234,9 @@ export default function Home() {
               ))}
             </div>
             <div className="service-finder-cta">
-  <a
-    href="https://witsrhi-servicefinder-client.onrender.com/"
-    className="service-finder-btn"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
+  <Link to="/service-finder" className="service-finder-btn">
     Find a Service Near You
-  </a>
+  </Link>
 </div>
           </div>
         </section>
