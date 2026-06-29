@@ -6,7 +6,6 @@ import { useAuth } from "./context/AuthContext";
 import Home from "./pages/Home";
 
 // Everything else is code-split so the homepage bundle stays small.
-// The Service Finder in particular drags in Leaflet + markercluster + Papa Parse.
 const Methods         = lazy(() => import("./pages/Methods"));
 const PvPvA           = lazy(() => import("./pages/PvPvA"));
 const Resources       = lazy(() => import("./pages/Resources"));
