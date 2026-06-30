@@ -431,10 +431,11 @@ function LandingPage({ onStart }) {
       <div style={{ background: "linear-gradient(180deg, #5a9de0 0%, #7ab3ef 100%)", padding: "180px 20px 50px", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <img src="/img/mbackground.webp" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.25 }} />
         <div style={{ position: "relative", zIndex: 1 }}>
-          <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "1rem", marginBottom: 12 }}>Before taking the quiz, learn about your options:</p>
+          
           <h1 style={{ fontSize: "clamp(2rem, 4.5vw, 2.5rem)", fontWeight: 700, color: "#fff", marginBottom: 20, lineHeight: 1.2 }}>
             Which PrEP Method<br />is Right for You?
           </h1>
+          <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "1rem", marginBottom: 12 }}>Before taking the quiz, learn about your options:</p>
           <div style={{ display: "flex", justifyContent: "center", gap: 24, flexWrap: "wrap", marginTop: 16 }}>
             {METHOD_INFO.map(m => (
               <div key={m.id} style={{ textAlign: "center" }}>
