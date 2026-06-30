@@ -127,7 +127,7 @@ export default function AdminDash() {
       title:        r.title,
       url:          r.url,
       tab:          r.tab,
-      tags:         typeof r.tags === "string" ? JSON.parse(r.tags) : (r.tags || []),
+      tags:         safeParseJson(r.tags),
       storage_path: r.storage_path || "",
     });
     window.scrollTo({ top: 0, behavior: "smooth" });
