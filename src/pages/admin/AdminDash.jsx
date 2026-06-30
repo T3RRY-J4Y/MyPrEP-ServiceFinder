@@ -3,6 +3,11 @@ import { supabase } from "../../supabase";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 
+function safeParseJson(val) {
+  if (typeof val !== "string") return val || [];
+  try { return JSON.parse(val || "[]"); } catch { return []; }
+}
+
 const TABS      = ["policy", "job-aids", "iec", "community"];
 const TAB_LABELS = {
   policy:      "Implementation Guidelines",
@@ -98,7 +103,7 @@ export default function AdminDash() {
 
     try {
       if (editing) {
-        const { error } = await supabase.from("resources").update(payload).eq("title", editing);
+        const { error } = await supabase.from("resources").update(payload).eq("id", editing);
         if (error) throw error;
         showToast("Resource updated!");
       } else {
@@ -117,7 +122,7 @@ export default function AdminDash() {
   }
 
   function startEdit(r) {
-    setEditing(r.title);
+    setEditing(r.id);
     setForm({
       title:        r.title,
       url:          r.url,
@@ -131,11 +136,11 @@ export default function AdminDash() {
   async function handleDelete(r) {
     if (!confirm(`Delete "${r.title}"?\nThis cannot be undone.`)) return;
     try {
+      const { error } = await supabase.from("resources").delete().eq("id", r.id);
+      if (error) throw error;
       if (r.storage_path) {
         await supabase.storage.from("resources").remove([r.storage_path]);
       }
-      const { error } = await supabase.from("resources").delete().eq("title", r.title);
-      if (error) throw error;
       showToast("Deleted.");
       await load();
     } catch (e) {
@@ -321,9 +326,9 @@ export default function AdminDash() {
                   <tr><td colSpan={5} style={{ textAlign: "center", padding: 40, color: "#8892a4" }}>No resources yet.</td></tr>
                 )}
                 {filtered.map((r, i) => {
-                  const tags = typeof r.tags === "string" ? JSON.parse(r.tags || "[]") : (r.tags || []);
+                  const tags = safeParseJson(r.tags);
                   return (
-                    <tr key={r.title} style={{ borderBottom: "1px solid #252b3b", background: i % 2 === 0 ? "#181c27" : "#1a1f2e" }}>
+                    <tr key={r.id} style={{ borderBottom: "1px solid #252b3b", background: i % 2 === 0 ? "#181c27" : "#1a1f2e" }}>
                       <td style={{ ...s.td, maxWidth: 260, wordBreak: "break-word", color: "#e8eaf0", fontWeight: 500 }}>{r.title}</td>
                       <td style={s.td}><span style={s.tabBadge}>{TAB_LABELS[r.tab] || r.tab}</span></td>
                       <td style={s.td}>{tags.map(t => <span key={t} style={s.tagPill}>{t}</span>)}</td>

@@ -5,6 +5,11 @@ import Footer from "../components/Footer";
 import FaqCta from "../components/FaqCta";
 import CloudLayer from "../components/CloudLayer";
 
+function safeParseJson(val) {
+  if (typeof val !== "string") return val || [];
+  try { return JSON.parse(val || "[]"); } catch { return []; }
+}
+
 const TABS = [
   { id: "policy",    label: "Implementation Guidelines" },
   { id: "job-aids",  label: "Job Aids" },
@@ -44,9 +49,7 @@ export default function Resources() {
   }, []);
 
   const visible = resources.filter(r => {
-    const tags = typeof r.tags === "string"
-      ? JSON.parse(r.tags || "[]")
-      : (r.tags || []);
+    const tags = safeParseJson(r.tags);
     const tabMatch    = !activeTab    || r.tab === activeTab;
     const filterMatch = !activeFilter || tags.includes(activeFilter);
     const searchMatch = !search       || r.title.toLowerCase().includes(search.toLowerCase());
