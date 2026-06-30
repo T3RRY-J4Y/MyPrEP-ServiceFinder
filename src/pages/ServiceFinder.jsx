@@ -38,11 +38,13 @@ export default function ServiceFinder() {
   const [page,     setPage]     = useState(1);
   const [talkOpen, setTalkOpen] = useState(false);
 
-  const mapEl   = useRef(null);
-  const mapRef  = useRef(null);
-  const cluster = useRef(null);
-  const markers = useRef({});
-  const youRef  = useRef(null);
+  const mapEl        = useRef(null);
+  const mapRef       = useRef(null);
+  const cluster      = useRef(null);
+  const markers      = useRef({});
+  const youRef       = useRef(null);
+  const heroSearchRef = useRef(null);
+  const [searchSticky, setSearchSticky] = useState(false);
 
   /* ── load all facilities (Supabase caps responses at 1000 rows) ── */
   useEffect(() => {
@@ -90,10 +92,23 @@ export default function ServiceFinder() {
     return () => { map.remove(); mapRef.current = null; };
   }, []);
 
+  /* ── show floating search once the hero search bar leaves the viewport ── */
+  useEffect(() => {
+    const el = heroSearchRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setSearchSticky(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   /* ── merge duplicates across datasets: same name + same spot = one facility ── */
   const merged = useMemo(() => {
     const byKey = new Map();
     for (const f of all) {
+      if (!f.name || f.lat == null || f.lng == null) continue;
       const key = `${f.name.trim().toLowerCase()}|${f.lat.toFixed(4)}|${f.lng.toFixed(4)}`;
       const ex = byKey.get(key);
       if (!ex) {
@@ -242,7 +257,7 @@ export default function ServiceFinder() {
           <h1>Find care near you</h1>
           <p>PrEP, HIV testing, family planning and support services across South Africa -
             free, friendly and confidential. Pick a service, or search your area.</p>
-          <form className="sf-search" onSubmit={e => e.preventDefault()}>
+          <form ref={heroSearchRef} className="sf-search" onSubmit={e => e.preventDefault()}>
             <input type="search" value={q} onChange={e => { setQ(e.target.value); setPage(1); }}
                    placeholder="Search by facility name or suburb, e.g. Hillbrow"
                    aria-label="Search facilities" />
@@ -292,6 +307,17 @@ export default function ServiceFinder() {
           </aside>
 
           <div className="sf-mapcol">
+            <div className={`sf-map-search-wrap${searchSticky ? " visible" : ""}`}>
+              <form className="sf-map-search" onSubmit={e => e.preventDefault()}>
+                <input
+                  type="search"
+                  value={q}
+                  onChange={e => { setQ(e.target.value); setPage(1); }}
+                  placeholder="Search facilities…"
+                  aria-label="Search facilities"
+                />
+              </form>
+            </div>
             <div ref={mapEl} className="sf-map" aria-label="Map of facilities" />
             <div className="sf-hint"><b>Tip:</b> tap a pin to see the facility, or pick a service
               on the left to narrow the map. Numbered circles are groups — tap to zoom in.</div>

@@ -214,7 +214,7 @@ function MethodDetailPage({ methodKey, onBack }) {
           }}>
             <img src={d.icon} alt={d.label} style={{ width: 52, height: 52, objectFit: "contain" }} />
           </div>
-          <h1 style={{ color: "#fff", fontWeight: 800, fontSize: "clamp(2rem, 4.5vw, 2.625rem)", marginBottom: 8 }}>
+          <h1 style={{ color: "#fff", fontWeight: 700, fontSize: "clamp(2rem, 4.5vw, 2.625rem)", marginBottom: 8 }}>
             {d.label}
           </h1>
           {/* Effectiveness pill */}
@@ -238,20 +238,20 @@ function MethodDetailPage({ methodKey, onBack }) {
             borderTop: "4px solid " + d.color,
             boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
           }}>
-            <p style={{ color: d.color, fontWeight: 800, fontSize: "0.95rem", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 10 }}>
+            <p style={{ color: d.color, fontWeight: 700, fontSize: "0.82rem", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 10 }}>
               💡 What is it?
             </p>
-            <p style={{ color: "#333", fontSize: "0.95rem", lineHeight: 1.65 }}>{d.what}</p>
+            <p style={{ color: "#333", fontSize: "0.938rem", lineHeight: 1.65 }}>{d.what}</p>
           </div>
           <div style={{
             background: "#fff", borderRadius: 20, padding: "22px",
             borderTop: "4px solid " + d.color,
             boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
           }}>
-            <p style={{ color: d.color, fontWeight: 800, fontSize: "0.95rem", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 10 }}>
+            <p style={{ color: d.color, fontWeight: 700, fontSize: "0.82rem", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 10 }}>
               ⚙️ How does it work?
             </p>
-            <p style={{ color: "#333", fontSize: "0.95rem", lineHeight: 1.65 }}>{d.how}</p>
+            <p style={{ color: "#333", fontSize: "0.938rem", lineHeight: 1.65 }}>{d.how}</p>
           </div>
         </div>
 
@@ -260,10 +260,10 @@ function MethodDetailPage({ methodKey, onBack }) {
           background: d.color, borderRadius: 20, padding: "22px",
           marginBottom: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.1)",
         }}>
-          <p style={{ color: "rgba(255,255,255,0.8)", fontWeight: 800, fontSize: "0.95rem", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 10 }}>
+          <p style={{ color: "rgba(255,255,255,0.8)", fontWeight: 700, fontSize: "0.82rem", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 10 }}>
             📋 How is it used?
           </p>
-          <p style={{ color: "#fff", fontSize: "0.95rem", lineHeight: 1.7 }}>{d.used}</p>
+          <p style={{ color: "#fff", fontSize: "0.938rem", lineHeight: 1.7 }}>{d.used}</p>
         </div>
 
         {/* Timeline */}
@@ -271,7 +271,7 @@ function MethodDetailPage({ methodKey, onBack }) {
           background: "#fff", borderRadius: 20, padding: "22px",
           marginBottom: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
         }}>
-          <p style={{ color: d.color, fontWeight: 800, fontSize: "0.95rem", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 16 }}>
+          <p style={{ color: d.color, fontWeight: 700, fontSize: "0.82rem", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 16 }}>
             🗓 The process
           </p>
           <div style={{ position: "relative" }}>
@@ -293,8 +293,8 @@ function MethodDetailPage({ methodKey, onBack }) {
                   {i + 1}
                 </div>
                 <div style={{ paddingTop: 8 }}>
-                  <p style={{ color: d.color, fontWeight: 700, fontSize: "0.92rem", marginBottom: 2 }}>{p.time}</p>
-                  <p style={{ color: "#444", fontSize: "0.95rem", lineHeight: 1.5 }}>{p.detail}</p>
+                  <p style={{ color: d.color, fontWeight: 700, fontSize: "0.875rem", marginBottom: 2 }}>{p.time}</p>
+                  <p style={{ color: "#444", fontSize: "0.938rem", lineHeight: 1.5 }}>{p.detail}</p>
                 </div>
               </div>
             ))}
@@ -306,10 +306,10 @@ function MethodDetailPage({ methodKey, onBack }) {
           background: "#fff5f0", border: "2px solid #ffcbb3",
           borderRadius: 20, padding: "22px", marginBottom: 16,
         }}>
-          <p style={{ color: "#e05a00", fontWeight: 800, fontSize: "0.95rem", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 10 }}>
+          <p style={{ color: "#e05a00", fontWeight: 700, fontSize: "0.82rem", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 10 }}>
             ⚠️ Side effects
           </p>
-          <p style={{ color: "#555", fontSize: "0.95rem", lineHeight: 1.65 }}>{d.sideEffects}</p>
+          <p style={{ color: "#555", fontSize: "0.938rem", lineHeight: 1.65 }}>{d.sideEffects}</p>
         </div>
 
         {/* Considerations — grid of pills */}
@@ -317,7 +317,7 @@ function MethodDetailPage({ methodKey, onBack }) {
           background: "#fff", borderRadius: 20, padding: "22px",
           marginBottom: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
         }}>
-          <p style={{ color: d.color, fontWeight: 800, fontSize: "0.95rem", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 14 }}>
+          <p style={{ color: d.color, fontWeight: 700, fontSize: "0.82rem", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 14 }}>
             🔍 Things to consider
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -327,8 +327,8 @@ function MethodDetailPage({ methodKey, onBack }) {
                 padding: "10px 14px", background: d.color + "0d",
                 borderRadius: 10, borderLeft: "3px solid " + d.color,
               }}>
-                <span style={{ color: d.color, fontWeight: 800, flexShrink: 0 }}>→</span>
-                <span style={{ color: "#333", fontSize: "0.95rem", lineHeight: 1.5 }}>{c}</span>
+                <span style={{ color: d.color, fontWeight: 700, flexShrink: 0 }}>→</span>
+                <span style={{ color: "#333", fontSize: "0.938rem", lineHeight: 1.5 }}>{c}</span>
               </div>
             ))}
           </div>
@@ -339,7 +339,7 @@ function MethodDetailPage({ methodKey, onBack }) {
           background: "#fff", borderRadius: 20, padding: "22px",
           marginBottom: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
         }}>
-          <p style={{ color: d.color, fontWeight: 800, fontSize: "0.95rem", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 14 }}>
+          <p style={{ color: d.color, fontWeight: 700, fontSize: "0.82rem", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 14 }}>
             ❓ Frequently asked questions
           </p>
           {d.faqs.map((faq, i) => (
@@ -355,7 +355,7 @@ function MethodDetailPage({ methodKey, onBack }) {
                   transition: "all .2s",
                 }}
               >
-                <span style={{ color: openFaq === i ? "#fff" : d.color, fontWeight: 700, fontSize: "0.95rem" }}>
+                <span style={{ color: openFaq === i ? "#fff" : d.color, fontWeight: 700, fontSize: "0.938rem" }}>
                   {faq.q}
                 </span>
                 <img
@@ -377,7 +377,7 @@ function MethodDetailPage({ methodKey, onBack }) {
                   borderRadius: "0 0 12px 12px",
                   padding: "14px 18px",
                 }}>
-                  <p style={{ color: "#333", fontSize: "0.95rem", lineHeight: 1.6, margin: 0 }}>{faq.a}</p>
+                  <p style={{ color: "#333", fontSize: "0.938rem", lineHeight: 1.6, margin: 0 }}>{faq.a}</p>
                 </div>
               )}
             </div>
@@ -389,7 +389,7 @@ function MethodDetailPage({ methodKey, onBack }) {
           background: "rgba(255,255,255,0.6)", borderRadius: 14,
           padding: "14px 18px", marginBottom: 16,
         }}>
-          <p style={{ color: "#555", fontSize: "0.95rem", lineHeight: 1.6, margin: 0, textAlign: "center" }}>
+          <p style={{ color: "#555", fontSize: "0.875rem", lineHeight: 1.6, margin: 0, textAlign: "center" }}>
             ⚠️ This information does not replace medical advice. Please speak to a healthcare provider before starting any HIV prevention method.
           </p>
         </div>
@@ -408,7 +408,7 @@ function MethodDetailPage({ methodKey, onBack }) {
         <button onClick={onBack} style={{
           background: "transparent", color: blue,
           border: "2px solid " + blue, borderRadius: 99,
-          padding: "12px 24px", fontWeight: 700, fontSize: "0.92rem", cursor: "pointer",
+          padding: "12px 24px", fontWeight: 700, fontSize: "0.875rem", cursor: "pointer",
         }}>
           ← Back
         </button>
@@ -432,7 +432,7 @@ function LandingPage({ onStart }) {
         <img src="/img/mbackground.webp" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.25 }} />
         <div style={{ position: "relative", zIndex: 1 }}>
           <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "1rem", marginBottom: 12 }}>Before taking the quiz, learn about your options:</p>
-          <h1 style={{ fontSize: "clamp(2.125rem, 4.5vw, 2.625rem)", fontWeight: 800, color: "#fff", marginBottom: 20, lineHeight: 1.2 }}>
+          <h1 style={{ fontSize: "clamp(2rem, 4.5vw, 2.5rem)", fontWeight: 700, color: "#fff", marginBottom: 20, lineHeight: 1.2 }}>
             Which PrEP Method<br />is Right for You?
           </h1>
           <div style={{ display: "flex", justifyContent: "center", gap: 24, flexWrap: "wrap", marginTop: 16 }}>
@@ -460,16 +460,16 @@ function LandingPage({ onStart }) {
             </div>
             {open === m.id && (
               <div style={{ background: "#fff", border: "2px solid " + blue, borderTop: "none", borderRadius: "0 0 14px 14px", padding: "20px 24px" }}>
-                <p style={{ color: blue, fontWeight: 700, marginBottom: 6 }}>{m.content.tagline}</p>
-                <p style={{ color: "#555", fontSize: "0.95rem", marginBottom: 12, fontStyle: "italic" }}>{m.content.schedule}</p>
-                <p style={{ fontWeight: 700, color: "#333", marginBottom: 8 }}>The process:</p>
+                <p style={{ color: blue, fontWeight: 700, fontSize: "0.938rem", marginBottom: 6 }}>{m.content.tagline}</p>
+                <p style={{ color: "#555", fontSize: "0.875rem", marginBottom: 12, fontStyle: "italic" }}>{m.content.schedule}</p>
+                <p style={{ fontWeight: 700, fontSize: "0.875rem", color: "#333", marginBottom: 8 }}>The process:</p>
                 {m.content.process.map((p, i) => (
                   <div key={i} style={{ display: "flex", gap: 12, marginBottom: 8, padding: "8px 12px", background: "#f0f6ff", borderRadius: 8 }}>
-                    <span style={{ color: blue, fontWeight: 700, minWidth: 100, fontSize: "0.92rem" }}>{p.time}</span>
-                    <span style={{ color: "#333", fontSize: "0.92rem" }}>{p.detail}</span>
+                    <span style={{ color: blue, fontWeight: 700, minWidth: 100, fontSize: "0.875rem" }}>{p.time}</span>
+                    <span style={{ color: "#333", fontSize: "0.875rem" }}>{p.detail}</span>
                   </div>
                 ))}
-                <p style={{ fontSize: "0.95rem", color: "#666", marginTop: 12, borderLeft: "3px solid " + blue, paddingLeft: 10 }}>{m.content.note}</p>
+                <p style={{ fontSize: "0.875rem", color: "#666", marginTop: 12, borderLeft: "3px solid " + blue, paddingLeft: 10 }}>{m.content.note}</p>
               </div>
             )}
           </div>
@@ -525,7 +525,7 @@ function QuizPage({ onBack, onSubmit }) {
       <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "32px 20px 120px", opacity: animating ? 0 : 1, transition: "opacity .2s" }}>
         <div style={{ maxWidth: 600, width: "100%" }}>
           <div style={{ textAlign: "center", fontSize: "3.5rem", marginBottom: 20 }}>{q.emoji}</div>
-          <h2 style={{ textAlign: "center", color: "#fff", fontSize: "clamp(1.35rem, 3vw, 1.75rem)", fontWeight: 800, marginBottom: 28, lineHeight: 1.35 }}>{q.question}</h2>
+          <h2 style={{ textAlign: "center", color: "#fff", fontSize: "clamp(1.25rem, 3vw, 1.5rem)", fontWeight: 700, marginBottom: 28, lineHeight: 1.35 }}>{q.question}</h2>
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {q.options.map((opt, i) => {
               const isSelected = selected === opt;
@@ -534,7 +534,7 @@ function QuizPage({ onBack, onSubmit }) {
                   <div style={{ width: 28, height: 28, borderRadius: "50%", border: "2px solid " + (isSelected ? "#fff" : blue), background: isSelected ? "#fff" : "transparent", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
                     {isSelected && <div style={{ width: 14, height: 14, borderRadius: "50%", background: blue }} />}
                   </div>
-                  <span style={{ color: isSelected ? "#fff" : "#333", fontWeight: 600, fontSize: "1rem", lineHeight: 1.3 }}>{opt.label}</span>
+                  <span style={{ color: isSelected ? "#fff" : "#333", fontWeight: 600, fontSize: "0.938rem", lineHeight: 1.3 }}>{opt.label}</span>
                 </div>
               );
             })}
@@ -581,12 +581,12 @@ function ResultsPage({ answers, onBack, onRetake, onViewDetail }) {
                   {idx === 0 && results.length > 1 && (
                     <span style={{ background: yellow, color: "#fff", fontSize: "0.7rem", fontWeight: 800, padding: "2px 8px", borderRadius: 99, letterSpacing: ".06em", textTransform: "uppercase", display: "inline-block", marginBottom: 4 }}>Top Match</span>
                   )}
-                  <h3 style={{ color: res.color, fontWeight: 800, fontSize: "1.2rem", margin: 0 }}>{res.label}</h3>
+                  <h3 style={{ color: res.color, fontWeight: 700, fontSize: "1.1rem", margin: 0 }}>{res.label}</h3>
                 </div>
               </div>
-              <p style={{ color: "#333", fontSize: "0.95rem", lineHeight: 1.7, marginBottom: 12 }}>{res.description}</p>
+              <p style={{ color: "#333", fontSize: "0.938rem", lineHeight: 1.7, marginBottom: 12 }}>{res.description}</p>
               <div style={{ background: res.color + "12", borderLeft: "4px solid " + res.color, borderRadius: "0 8px 8px 0", padding: "10px 14px", marginBottom: 16 }}>
-                <p style={{ color: res.color, fontWeight: 600, fontSize: "0.95rem", margin: 0 }}>{res.suitable}</p>
+                <p style={{ color: res.color, fontWeight: 600, fontSize: "0.938rem", margin: 0 }}>{res.suitable}</p>
               </div>
               {/* Learn more button */}
               <button
@@ -594,7 +594,7 @@ function ResultsPage({ answers, onBack, onRetake, onViewDetail }) {
                 style={{
                   background: res.color, color: "#fff", border: "none",
                   borderRadius: 99, padding: "10px 24px",
-                  fontWeight: 700, fontSize: "0.95rem", cursor: "pointer",
+                  fontWeight: 700, fontSize: "0.875rem", cursor: "pointer",
                   letterSpacing: ".04em", textTransform: "uppercase",
                 }}
               >
@@ -605,7 +605,7 @@ function ResultsPage({ answers, onBack, onRetake, onViewDetail }) {
         })}
 
         <div style={{ background: "rgba(255,255,255,0.6)", borderRadius: 14, padding: "16px 20px", marginTop: 8, marginBottom: 20 }}>
-          <p style={{ color: "#555", fontSize: "0.95rem", lineHeight: 1.6, margin: 0, textAlign: "center" }}>
+          <p style={{ color: "#555", fontSize: "0.875rem", lineHeight: 1.6, margin: 0, textAlign: "center" }}>
             ⚠️ This quiz is for information only and does not replace medical advice. Please speak to a healthcare provider before starting any HIV prevention method.
           </p>
         </div>
