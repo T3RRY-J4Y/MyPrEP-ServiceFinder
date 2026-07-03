@@ -1,15 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "../../supabase";
-import { useAuth } from "../../context/AuthContext";
-import { useNavigate, Link } from "react-router-dom";
+import AdminTopbar from "./AdminTopbar";
 import { CATEGORIES, PARENT_OF, LABEL_OF } from "../../data/serviceTaxonomy";
 import { parseFacilityCsv } from "../../lib/facilityCsv";
 
 const BATCH = 500; // rows per Supabase insert
 
 export default function AdminFacilities() {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
   const fileRef = useRef(null);
 
   const [file,      setFile]      = useState(null);
@@ -49,8 +46,6 @@ export default function AdminFacilities() {
     setFile(f);
     if (!label) setLabel(f.name.replace(/\.csv$/i, "").replace(/[_-]+/g, " "));
   }
-
-  async function handleLogout() { await logout(); navigate("/admin/login"); }
 
   // ── Upload flow ────────────────────────────────────────────
   async function handleUpload() {
@@ -129,18 +124,7 @@ export default function AdminFacilities() {
 
   return (
     <div style={s.bg}>
-      <div style={s.topbar}>
-        <div style={s.topLeft}>
-          <img src="/img/logo.webp" alt="MyPrEP" style={{ height: 38 }} />
-          <span style={s.badge}>Service Finder — Admin</span>
-        </div>
-        <div style={s.topRight}>
-          <Link to="/admin" style={s.ghostLink}>Resources CMS</Link>
-          <Link to="/service-finder" style={s.ghostLink}>View Finder</Link>
-          <span style={s.userPill}>{user?.email}</span>
-          <button onClick={handleLogout} style={s.ghostBtn}>Sign out</button>
-        </div>
-      </div>
+      <AdminTopbar />
 
       <div style={s.main}>
         {/* ── Upload card ── */}
@@ -258,13 +242,6 @@ function Chip({ on, parent, onClick, children }) {
 
 const s = {
   bg:        { minHeight: "100vh", background: "#0f1117", color: "#e8eaf0", fontFamily: "inherit" },
-  topbar:    { background: "#181c27", borderBottom: "1px solid #252b3b", padding: "14px 28px", display: "flex", alignItems: "center", justifyContent: "space-between", position: "sticky", top: 0, zIndex: 100, flexWrap: "wrap", gap: 10 },
-  topLeft:   { display: "flex", alignItems: "center", gap: 14 },
-  topRight:  { display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" },
-  badge:     { background: "rgba(61,128,232,.2)", color: "#93c5fd", fontSize: "0.72rem", fontWeight: 700, letterSpacing: ".08em", textTransform: "uppercase", padding: "3px 9px", borderRadius: 6, border: "1px solid rgba(61,128,232,.4)" },
-  ghostLink: { background: "transparent", border: "1px solid #3a4255", color: "#c0c8d8", borderRadius: 8, padding: "7px 14px", fontSize: "0.85rem", textDecoration: "none" },
-  ghostBtn:  { background: "transparent", border: "1px solid #3a4255", color: "#c0c8d8", borderRadius: 8, padding: "7px 14px", cursor: "pointer", fontSize: "0.85rem" },
-  userPill:  { color: "#8892a4", fontSize: "0.82rem" },
   main:      { maxWidth: 980, margin: "26px auto", padding: "0 18px", display: "flex", flexDirection: "column", gap: 22 },
   card:      { background: "#181c27", border: "1px solid #252b3b", borderRadius: 14, padding: 26 },
   h2:        { margin: 0, fontSize: "1.2rem", color: "#e8eaf0" },

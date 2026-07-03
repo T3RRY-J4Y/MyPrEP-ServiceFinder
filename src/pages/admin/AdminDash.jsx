@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../../supabase";
-import { useAuth } from "../../context/AuthContext";
-import { useNavigate, Link } from "react-router-dom";
+import AdminTopbar from "./AdminTopbar";
 
 function safeParseJson(val) {
   if (typeof val !== "string") return val || [];
@@ -19,9 +18,6 @@ const ALL_TAGS = ["oral","len","pep","dvr","cabla","prepchoice","srhr"];
 const EMPTY    = { title: "", url: "", tab: "policy", tags: [], storage_path: "" };
 
 export default function AdminDash() {
-  const { user, logout } = useAuth();
-  const navigate          = useNavigate();
-
   const [resources, setResources] = useState([]);
   const [form,      setForm]      = useState(EMPTY);
   const [editing,   setEditing]   = useState(null);
@@ -148,11 +144,6 @@ export default function AdminDash() {
     }
   }
 
-  async function handleLogout() {
-    await logout();
-    navigate("/admin/login");
-  }
-
   const filtered = resources.filter(r =>
     r.title.toLowerCase().includes(search.toLowerCase()) ||
     (r.tab || "").toLowerCase().includes(search.toLowerCase())
@@ -168,19 +159,7 @@ export default function AdminDash() {
 
   return (
     <div style={s.bg}>
-      {/* Topbar */}
-      <div style={s.topbar}>
-        <div style={s.topLeft}>
-          <img src="/img/logo.webp" alt="MyPrEP" style={{ height: 38 }} />
-          <span style={s.badge}>Admin CMS</span>
-        </div>
-        <div style={s.topRight}>
-          <Link to="/admin/facilities" style={s.ghostLink}>Facilities</Link>
-          <Link to="/resources" style={s.ghostLink}>View Site</Link>
-          <span style={s.userPill}>{user?.email}</span>
-          <button onClick={handleLogout} style={s.ghostBtn}>Sign out</button>
-        </div>
-      </div>
+      <AdminTopbar />
 
       <div style={s.main}>
         <div style={s.pageHeader}>
@@ -363,13 +342,7 @@ export default function AdminDash() {
 
 const s = {
   bg:          { minHeight: "100vh", background: "#0f1117", color: "#e8eaf0", fontFamily: "inherit" },
-  topbar:      { background: "#181c27", borderBottom: "1px solid #252b3b", padding: "14px 28px", display: "flex", alignItems: "center", justifyContent: "space-between", position: "sticky", top: 0, zIndex: 100, flexWrap: "wrap", gap: 10 },
-  topLeft:     { display: "flex", alignItems: "center", gap: 14 },
-  topRight:    { display: "flex", alignItems: "center", gap: 12 },
-  badge:       { background: "rgba(61,128,232,.2)", color: "#93c5fd", fontSize: "0.72rem", fontWeight: 700, letterSpacing: ".08em", textTransform: "uppercase", padding: "3px 9px", borderRadius: 6, border: "1px solid rgba(61,128,232,.4)" },
-  ghostLink:   { background: "transparent", border: "1px solid #3a4255", color: "#c0c8d8", borderRadius: 8, padding: "7px 14px", fontSize: "0.85rem", textDecoration: "none" },
   ghostBtn:    { background: "transparent", border: "1px solid #3a4255", color: "#c0c8d8", borderRadius: 8, padding: "7px 14px", cursor: "pointer", fontSize: "0.85rem" },
-  userPill:    { fontSize: "0.82rem", color: "#c0c8d8", background: "#0f1117", border: "1px solid #3a4255", borderRadius: 99, padding: "5px 14px" },
   main:        { maxWidth: 1200, margin: "0 auto", padding: "32px 28px" },
   pageHeader:  { marginBottom: 28 },
   h2:          { fontSize: "1.6rem", fontWeight: 700, marginBottom: 4, color: "#f0f2f8" },
