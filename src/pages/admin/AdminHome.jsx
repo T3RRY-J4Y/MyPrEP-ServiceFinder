@@ -1,52 +1,27 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { supabase } from "../../supabase";
 import { useAuth } from "../../context/AuthContext";
 import { CATEGORIES, LABEL_OF } from "../../data/serviceTaxonomy";
+import AdminTopbar from "./AdminTopbar";
 
 export default function AdminHome() {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth();
 
   const [stats,    setStats]    = useState(null);
   const [recent,   setRecent]   = useState([]);
   const [loading,  setLoading]  = useState(true);
 
-  useEffect(() => { loadAll(); }, []);
-
-  async function loadAll() {
-    setLoading(true);
-    const [
-      { count: totalFacilities },
-      { count: totalResources },
-      { data: datasets },
-      { data: recentRes },
-    ] = await Promise.all([
-      supabase.from("facilities").select("*", { count: "exact", head: true }),
-      supabase.from("resources").select("*",  { count: "exact", head: true }),
-      supabase.from("facility_datasets").select("id,label,services,row_count,created_at").order("created_at", { ascending: false }).limit(5),
-      supabase.from("resources").select("id,title,tab,created_at").order("created_at", { ascending: false }).limit(5),
-    ]);
-
-    // per-service counts
-    const svcCounts = {};
-    if (datasets) {
-      for (const ds of datasets) {
-        for (const svc of ds.services || []) {
-          svcCounts[svc] = (svcCounts[svc] || 0) + ds.row_count;
-        }
-      }
-    }
-
-    setStats({ totalFacilities: totalFacilities || 0, totalResources: totalResources || 0, datasets: datasets || [], svcCounts });
-    setRecent([
-      ...(datasets || []).map(d => ({ type: "facility", label: d.label, sub: `${d.row_count?.toLocaleString()} facilities`, at: d.created_at })),
-      ...(recentRes || []).map(r => ({ type: "resource", label: r.title, sub: r.tab, at: r.created_at })),
-    ].sort((a, b) => new Date(b.at) - new Date(a.at)).slice(0, 8));
-    setLoading(false);
-  }
-
-  async function handleLogout() { await logout(); navigate("/admin/login"); }
+  useEffect(() => {
+    let alive = true;
+    loadAll().then(({ stats, recent }) => {
+      if (!alive) return;
+      setStats(stats);
+      setRecent(recent);
+      setLoading(false);
+    });
+    return () => { alive = false; };
+  }, []);
 
   const now = new Date();
   const greeting = now.getHours() < 12 ? "Good morning" : now.getHours() < 17 ? "Good afternoon" : "Good evening";
@@ -54,37 +29,23 @@ export default function AdminHome() {
 
   return (
     <div style={s.bg}>
-      {/* ── Topbar ── */}
-      <div style={s.topbar}>
-        <div style={s.topLeft}>
-          <img src="/img/logo.png" alt="MyPrEP" style={{ height: 38 }} onError={e => e.target.style.display="none"} />
-          <span style={s.badge}>Admin</span>
-        </div>
-        <div style={s.topRight}>
-          <Link to="/admin"            style={s.activeLink}>Dashboard</Link>
-          <Link to="/admin/facilities" style={s.ghostLink}>Facilities</Link>
-          <Link to="/admin/resources"  style={s.ghostLink}>Resources</Link>
-          <Link to="/"                 style={s.ghostLink} target="_blank">View Site</Link>
-          <span style={s.userPill}>{user?.email}</span>
-          <button onClick={handleLogout} style={s.ghostBtn}>Sign out</button>
-        </div>
-      </div>
+      <AdminTopbar />
 
       <div style={s.main}>
         {/* ── Greeting ── */}
         <div style={s.greeting}>
           <div>
-            <h1 style={s.h1}>{greeting}, {firstName} 👋</h1>
+            <h1 style={s.h1}>{greeting}, {firstName}</h1>
             <p style={s.muted}>{now.toLocaleDateString("en-ZA", { weekday:"long", year:"numeric", month:"long", day:"numeric" })}</p>
           </div>
         </div>
 
         {/* ── Stat cards ── */}
         <div style={s.statsGrid}>
-          <StatCard loading={loading} label="Total facilities" value={stats?.totalFacilities?.toLocaleString()} accent="#3D80E8" icon="📍" />
-          <StatCard loading={loading} label="Datasets uploaded" value={stats?.datasets?.length}               accent="#3ecf8e" icon="📂" />
-          <StatCard loading={loading} label="Resources published" value={stats?.totalResources?.toLocaleString()} accent="#EBA614" icon="📄" />
-          <StatCard loading={loading} label="Service categories" value={Object.keys(stats?.svcCounts || {}).length} accent="#a78bfa" icon="🏷️" />
+          <StatCard loading={loading} label="Total facilities" value={stats?.totalFacilities?.toLocaleString()} accent="#3D80E8" />
+          <StatCard loading={loading} label="Datasets uploaded" value={stats?.datasets?.length}               accent="#3ecf8e" />
+          <StatCard loading={loading} label="Resources published" value={stats?.totalResources?.toLocaleString()} accent="#EBA614" />
+          <StatCard loading={loading} label="Service categories" value={Object.keys(stats?.svcCounts || {}).length} accent="#a78bfa" />
         </div>
 
         {/* ── Main grid ── */}
@@ -95,10 +56,10 @@ export default function AdminHome() {
             <div style={s.card}>
               <h2 style={s.cardTitle}>Quick actions</h2>
               <div style={s.actionGrid}>
-                <ActionCard to="/admin/facilities" icon="⬆️" label="Upload facilities CSV"   desc="Add or replace facility datasets" color="#3D80E8" />
-                <ActionCard to="/admin/resources"  icon="📝" label="Manage resources"       desc="Add, edit or remove PDFs & links" color="#3ecf8e" />
-                <ActionCard to="/service-finder"   icon="🗺️" label="Preview Service Finder" desc="See the public map" color="#EBA614" external />
-                <ActionCard to="/admin/facilities" icon="🗑️" label="Delete a dataset"       desc="Remove a facility upload" color="#f87171" />
+                <ActionCard to="/admin/facilities" label="Upload facilities CSV"   desc="Add or replace facility datasets" color="#3D80E8" />
+                <ActionCard to="/admin/resources"  label="Manage resources"       desc="Add, edit or remove PDFs & links" color="#3ecf8e" />
+                <ActionCard to="/service-finder"   label="Preview Service Finder" desc="See the public map" color="#EBA614" external />
+                <ActionCard to="/admin/facilities" label="Delete a dataset"       desc="Remove a facility upload" color="#f87171" />
               </div>
             </div>
 
@@ -191,11 +152,43 @@ export default function AdminHome() {
   );
 }
 
+/* ── data loading ── */
+async function loadAll() {
+  const [
+    { count: totalFacilities },
+    { count: totalResources },
+    { data: datasets },
+    { data: recentRes },
+  ] = await Promise.all([
+    supabase.from("facilities").select("*", { count: "exact", head: true }),
+    supabase.from("resources").select("*",  { count: "exact", head: true }),
+    supabase.from("facility_datasets").select("id,label,services,row_count,created_at").order("created_at", { ascending: false }).limit(5),
+    supabase.from("resources").select("id,title,tab,created_at").order("created_at", { ascending: false }).limit(5),
+  ]);
+
+  // per-service counts
+  const svcCounts = {};
+  if (datasets) {
+    for (const ds of datasets) {
+      for (const svc of ds.services || []) {
+        svcCounts[svc] = (svcCounts[svc] || 0) + ds.row_count;
+      }
+    }
+  }
+
+  return {
+    stats: { totalFacilities: totalFacilities || 0, totalResources: totalResources || 0, datasets: datasets || [], svcCounts },
+    recent: [
+      ...(datasets || []).map(d => ({ type: "facility", label: d.label, sub: `${d.row_count?.toLocaleString()} facilities`, at: d.created_at })),
+      ...(recentRes || []).map(r => ({ type: "resource", label: r.title, sub: r.tab, at: r.created_at })),
+    ].sort((a, b) => new Date(b.at) - new Date(a.at)).slice(0, 8),
+  };
+}
+
 /* ── sub-components ── */
-function StatCard({ label, value, accent, icon, loading }) {
+function StatCard({ label, value, accent, loading }) {
   return (
     <div style={{ ...s.statCard, borderTop: `3px solid ${accent}` }}>
-      <div style={{ fontSize:"1.5rem", marginBottom:8 }}>{icon}</div>
       <div style={s.statLabel}>{label}</div>
       {loading
         ? <div style={{ height:36, background:"#252b3b", borderRadius:8, marginTop:4, animation:"pulse 1.5s infinite" }} />
@@ -204,10 +197,9 @@ function StatCard({ label, value, accent, icon, loading }) {
   );
 }
 
-function ActionCard({ to, icon, label, desc, color, external }) {
+function ActionCard({ to, label, desc, color, external }) {
   const inner = (
     <div style={{ ...s.actionCard, borderLeft: `4px solid ${color}` }}>
-      <span style={{ fontSize:"1.4rem" }}>{icon}</span>
       <div>
         <div style={{ fontWeight:700, fontSize:".92rem", color:"#e8eaf0" }}>{label}</div>
         <div style={{ fontSize:".78rem", color:"#8892a4" }}>{desc}</div>
@@ -244,14 +236,6 @@ function timeAgo(iso) {
 /* ── styles (exact same tokens as AdminDash) ── */
 const s = {
   bg:         { minHeight:"100vh", background:"#0f1117", color:"#e8eaf0", fontFamily:"inherit" },
-  topbar:     { background:"#181c27", borderBottom:"1px solid #252b3b", padding:"14px 28px", display:"flex", alignItems:"center", justifyContent:"space-between", position:"sticky", top:0, zIndex:100, flexWrap:"wrap", gap:10 },
-  topLeft:    { display:"flex", alignItems:"center", gap:14 },
-  topRight:   { display:"flex", alignItems:"center", gap:12, flexWrap:"wrap" },
-  badge:      { background:"rgba(61,128,232,.2)", color:"#93c5fd", fontSize:".72rem", fontWeight:700, letterSpacing:".08em", textTransform:"uppercase", padding:"3px 9px", borderRadius:6, border:"1px solid rgba(61,128,232,.4)" },
-  ghostLink:  { background:"transparent", border:"1px solid #3a4255", color:"#c0c8d8", borderRadius:8, padding:"7px 14px", fontSize:".85rem", textDecoration:"none" },
-  activeLink: { background:"rgba(61,128,232,.18)", border:"1px solid rgba(61,128,232,.5)", color:"#93c5fd", borderRadius:8, padding:"7px 14px", fontSize:".85rem", textDecoration:"none", fontWeight:700 },
-  ghostBtn:   { background:"transparent", border:"1px solid #3a4255", color:"#c0c8d8", borderRadius:8, padding:"7px 14px", cursor:"pointer", fontSize:".85rem" },
-  userPill:   { fontSize:".82rem", color:"#c0c8d8", background:"#0f1117", border:"1px solid #3a4255", borderRadius:99, padding:"5px 14px" },
   main:       { maxWidth:1280, margin:"0 auto", padding:"32px 28px" },
   greeting:   { marginBottom:28 },
   h1:         { fontSize:"1.8rem", fontWeight:800, color:"#f0f2f8", margin:0 },

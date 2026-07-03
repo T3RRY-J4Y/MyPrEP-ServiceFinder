@@ -2,8 +2,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 const NAV = [
-  { to: "/admin",            label: "Resources"  },
+  { to: "/admin",            label: "Dashboard"  },
   { to: "/admin/facilities", label: "Facilities" },
+  { to: "/admin/resources",  label: "Resources"  },
 ];
 
 export default function AdminTopbar() {
