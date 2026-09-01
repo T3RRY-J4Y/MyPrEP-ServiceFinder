@@ -12,7 +12,7 @@ const METHOD_DETAILS = {
     label: "Oral PrEP", icon: "/img/pills.webp", color: "#3D80E8",
     what: "Oral PrEP is a pill containing antiretroviral medication (ARVs), taken by HIV-negative people to prevent getting HIV. It contains two anti-HIV medicines: emtricitabine and tenofovir.",
     how: "When taken every day, the medication prevents the cells in your body from being infected with HIV. It can reduce the likelihood of getting HIV by more than 90%.",
-    used: "One pill every day for as long as you need it. After 7 days of daily use, you are preventing infection. When you want to stop, continue taking one pill a day for 7 days after your last exposure.",
+    used: "One pill every day for as long as you need it. It takes about 7 days of daily use to be protected for anal sex, and about 21 days for vaginal sex. When you want to stop, continue taking one pill a day for 7 days after your last exposure.",
     effectiveness: "More than 90% effective when taken daily",
     sideEffects: "Most people have no side effects. Some may experience headache, nausea, tiredness, or stomach discomfort in the first few weeks. These usually go away on their own.",
     considerations: [
@@ -28,7 +28,7 @@ const METHOD_DETAILS = {
       { time: "Every 3 months", detail: "HIV test and 3-month supply" },
     ],
     faqs: [
-      { q: "How soon does it work?", a: "Protection builds up after 7 days of daily use." },
+      { q: "How soon does it work?", a: "About 7 days of daily use for anal sex, and about 21 days for vaginal sex." },
       { q: "Can I use it during pregnancy?", a: "Yes. Oral PrEP can be used during pregnancy and breastfeeding." },
       { q: "What if I miss a dose?", a: "Take it as soon as you remember. Never take two doses at once." },
     ],
@@ -38,12 +38,12 @@ const METHOD_DETAILS = {
     what: "The PrEP ring is a flexible silicone ring containing dapivirine (an ARV). It is inserted into the vagina and worn for 28 days to reduce the chances of acquiring HIV during vaginal sex.",
     how: "The ring slowly releases the ARV dapivirine into vaginal tissues, providing continuous protection from HIV without needing to remember a daily pill.",
     used: "Insert the ring into the vagina and leave it for 28 days. Replace with a new ring every 28 days. The ring takes about 24 hours to reach maximum protection — use condoms or abstain during this time.",
-    effectiveness: "35–50% effective — higher with consistent use",
+    effectiveness: "About 30% effective — up to 50% with consistent use",
     sideEffects: "Some users may experience mild UTI, vaginal discomfort, or itching. These are usually mild and go away after a few days without removing the ring.",
     considerations: [
       "For vaginal sex only — does not protect during anal sex",
       "Does not prevent STIs or pregnancy",
-      "Cannot be used during pregnancy or breastfeeding",
+      "Recent studies support use during pregnancy and breastfeeding — discuss with your provider",
       "Can be worn discreetly — partner does not need to know",
       "Most people and their partners do not feel it",
     ],
@@ -59,7 +59,7 @@ const METHOD_DETAILS = {
     ],
   },
   cabla: {
-    label: "CAB-LA Injection", icon: "/img/inject.webp", color: "#3D80E8",
+    label: "CAB-LA Injection", icon: "/img/cab.webp", color: "#3D80E8",
     what: "CAB-LA is a PrEP injection containing cabotegravir (an ARV), taken by HIV-negative people to prevent HIV. It is given by a healthcare provider every 2 months.",
     how: "The medication slowly releases into your body and bloodstream after the injection, protecting your cells from HIV infection. In most people, protection begins within one week of the first injection.",
     used: "Injected into the buttocks by a healthcare provider. First injection on Day 1, second after 1 month, then every 2 months. You must continue clinic visits every 2 months for as long as you need protection.",
@@ -130,7 +130,7 @@ const METHOD_INFO = [
     id: "rings", label: "Rings", icon: "/img/ring.webp",
     content: {
       title: "PrEP Ring (DVR)", name: "Dapivirine Vaginal Ring",
-      tagline: "Reduces the risk of HIV during vaginal sex by 35–50%.",
+      tagline: "Reduces the risk of HIV during vaginal sex by about 30%, up to 50% with consistent use.",
       schedule: "Insert ring into vagina, replace every 28 days",
       process: [
         { time: "Day 1:", detail: "HIV test, and if negative, receive first ring — insert into vagina" },
@@ -141,15 +141,29 @@ const METHOD_INFO = [
     }
   },
   {
-    id: "injections", label: "Injections", icon: "/img/inject.webp",
+    id: "cabla", label: "CAB-LA", icon: "/img/cab.webp",
     content: {
-      title: "Injectable PrEP", name: "CAB-LA / Lenacapavir",
-      tagline: "More than 90–96% effective at preventing HIV.",
-      schedule: "Injections every 2 months (CAB-LA) or every 6 months (LEN)",
+      title: "CAB-LA Injection", name: "Cabotegravir",
+      tagline: "More than 90% effective at preventing HIV.",
+      schedule: "An injection every 2 months",
       process: [
         { time: "Day 1:", detail: "HIV test, and if negative, receive first injection" },
-        { time: "After 1 month:", detail: "Second injection (CAB-LA) — then every 2 months" },
-        { time: "Every 6 months:", detail: "Lenacapavir — two injections every 6 months after initiation" },
+        { time: "After 1 month:", detail: "Second injection to build up protection" },
+        { time: "Every 2 months:", detail: "Ongoing injection at a clinic visit" },
+      ],
+      note: "Does not protect against STIs or pregnancy.",
+    }
+  },
+  {
+    id: "len", label: "Lenacapavir", icon: "/img/inject.webp",
+    content: {
+      title: "Lenacapavir (LEN)", name: "Lenacapavir",
+      tagline: "More than 96% effective — the most effective PrEP option.",
+      schedule: "Two injections every 6 months",
+      process: [
+        { time: "Day 1:", detail: "Two tablets and two injections at the clinic" },
+        { time: "Day 2:", detail: "Two tablets taken at home" },
+        { time: "Every 6 months:", detail: "Two injections at a clinic visit" },
       ],
       note: "Does not protect against STIs or pregnancy.",
     }
@@ -162,7 +176,7 @@ const QUESTIONS = [
   { id: "vagina",    question: "Are you comfortable inserting something into your vagina?",                emoji: "🔵", options: [{ label: "Yes, I am comfortable with this", value: true, methods: ["ring"] }, { label: "No, I prefer not to", value: false, methods: [] }] },
   { id: "clinics",   question: "How often are you able to visit a clinic?",                               emoji: "🏥", options: [{ label: "Every 2 months", value: "2m", methods: ["cabla"] }, { label: "Every 6 months", value: "6m", methods: ["len"] }, { label: "Every 3 months", value: "3m", methods: ["oral", "ring"] }] },
   { id: "blood",     question: "Are you comfortable with having blood taken?",                            emoji: "🩸", options: [{ label: "Yes, that's fine", value: true, methods: ["oral", "cabla", "len"] }, { label: "No, I'd rather avoid it", value: false, methods: ["ring"] }] },
-  { id: "pregnant",  question: "Are you currently pregnant or breastfeeding?",                            emoji: "🤰", options: [{ label: "Yes", value: true, methods: ["oral"] }, { label: "No", value: false, methods: ["oral", "ring", "cabla", "len"] }, { label: "Not sure / Rather not say", value: null, methods: ["oral"] }] },
+  { id: "pregnant",  question: "Are you currently pregnant or breastfeeding?",                            emoji: "🤰", options: [{ label: "Yes", value: true, methods: ["oral", "ring", "cabla", "len"] }, { label: "No", value: false, methods: ["oral", "ring", "cabla", "len"] }, { label: "Not sure / Rather not say", value: null, methods: ["oral", "ring", "cabla", "len"] }] },
   { id: "privacy",   question: "Is it important that your HIV prevention method is discreet and private?", emoji: "🔒", options: [{ label: "Yes, privacy is important to me", value: true, methods: ["ring", "cabla", "len"] }, { label: "No, it doesn't matter", value: false, methods: ["oral", "ring", "cabla", "len"] }] },
   { id: "sex",       question: "What type of sex do you have?",                                           emoji: "❤️", options: [{ label: "Vaginal sex only", value: "vaginal", methods: ["oral", "ring", "cabla", "len"] }, { label: "Anal and/or vaginal sex", value: "anal", methods: ["oral", "cabla", "len"] }, { label: "I'd rather not say", value: "other", methods: ["oral", "cabla", "len"] }] },
 ];
@@ -170,9 +184,25 @@ const QUESTIONS = [
 const RESULTS = {
   oral:  { label: "Oral PrEP",        icon: "/img/pills.webp",  color: "#3D80E8", description: "Oral PrEP is a daily pill that is very effective at preventing HIV from any kind of exposure. It is widely available at public clinics across South Africa and can be started and stopped easily.", suitable: "Best for people comfortable with a daily routine who want a flexible, well-established option." },
   ring:  { label: "PrEP Ring (DVR)",  icon: "/img/ring.webp",   color: "#EBA614", description: "The PrEP ring is a discreet silicone ring worn in the vagina for 28 days. It prevents HIV during vaginal sex and requires no daily action — just a monthly replacement.", suitable: "Best for people who want a discreet, low-maintenance option for vaginal sex." },
-  cabla: { label: "CAB-LA Injection", icon: "/img/inject.webp", color: "#3D80E8", description: "CAB-LA is an injection given every 2 months that is more than 90% effective. No daily pill needed — just a clinic visit every 2 months.", suitable: "Best for people who prefer not taking a daily pill and can visit a clinic every 2 months." },
+  cabla: { label: "CAB-LA Injection", icon: "/img/cab.webp", color: "#3D80E8", description: "CAB-LA is an injection given every 2 months that is more than 90% effective. No daily pill needed — just a clinic visit every 2 months.", suitable: "Best for people who prefer not taking a daily pill and can visit a clinic every 2 months." },
   len:   { label: "Lenacapavir (LEN)",icon: "/img/inject.webp", color: "#7c3aed", description: "Lenacapavir is a long-acting injection given every 6 months — the least frequent option. It is more than 96% effective at preventing HIV.", suitable: "Best for people who want maximum convenience with minimal clinic visits." },
 };
+
+// ── Checklist version data ────────────────────────────────────
+// A flat list of tick-if-it-applies statements. Method mappings mirror the
+// step-by-step QUESTIONS so both versions give consistent recommendations.
+const CHECKLIST_ITEMS = [
+  { id: "pill-yes",     label: "I can take a pill every single day",                       methods: ["oral"] },
+  { id: "no-pill",      label: "I'd rather not take a pill every day",                     methods: ["ring", "cabla", "len"] },
+  { id: "inject-yes",   label: "I'm comfortable getting an injection at a clinic",         methods: ["cabla", "len"] },
+  { id: "ring-yes",     label: "I'm comfortable inserting a ring into my vagina",          methods: ["ring"] },
+  { id: "avoid-needle", label: "I'd rather avoid needles and having blood taken",          methods: ["ring"] },
+  { id: "clinic-2m",    label: "I can visit a clinic every 2 months",                      methods: ["cabla"] },
+  { id: "clinic-few",   label: "I'd prefer the fewest clinic visits — about twice a year", methods: ["len"] },
+  { id: "privacy",      label: "I want a discreet, private method",                        methods: ["ring", "cabla", "len"] },
+  { id: "sex-anal",     label: "I have anal sex",                                          methods: ["oral", "cabla", "len"] },
+  { id: "preg",         label: "I'm currently pregnant or breastfeeding",                  methods: ["oral", "ring", "cabla", "len"] },
+];
 
 function getResults(answers) {
   const scores = { oral: 0, ring: 0, cabla: 0, len: 0 };
@@ -426,6 +456,12 @@ function MethodDetailPage({ methodKey, onBack }) {
 // ── Landing Page ──────────────────────────────────────────────
 function LandingPage({ onStart }) {
   const [open, setOpen] = useState(null);
+  const [version, setVersion] = useState("quiz");
+
+  const VERSIONS = [
+    { id: "quiz",      title: "Step-by-Step Quiz", desc: "Answer one question at a time and get a guided recommendation." },
+    { id: "checklist", title: "Quick Checklist",   desc: "Tick everything that applies on a single page — faster if you're in a hurry." },
+  ];
   return (
     <div style={{ background: bg, minHeight: "100vh" }}>
       <div style={{ background: "linear-gradient(180deg, #5a9de0 0%, #7ab3ef 100%)", padding: "180px 20px 50px", textAlign: "center", position: "relative", overflow: "hidden" }}>
@@ -476,9 +512,25 @@ function LandingPage({ onStart }) {
           </div>
         ))}
         <div style={{ textAlign: "center", marginTop: 36, paddingBottom: 40 }}>
-          <p style={{ color: "#fff", marginBottom: 16, fontSize: "1rem", fontWeight: 600 }}>Ready to find your best match?</p>
-          <button onClick={onStart} style={{ background: yellow, color: "#fff", border: "none", borderRadius: 99, padding: "18px 56px", fontSize: "1.1rem", fontWeight: 800, letterSpacing: "0.06em", textTransform: "uppercase", cursor: "pointer", boxShadow: "0 6px 24px rgba(235,166,20,0.45)" }}>
-            TAKE THE QUIZ
+          <p style={{ color: "#fff", marginBottom: 16, fontSize: "1rem", fontWeight: 600 }}>Ready to find your best match? Choose how you'd like to start:</p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 14, maxWidth: 560, margin: "0 auto 24px", textAlign: "left" }}>
+            {VERSIONS.map(v => {
+              const isActive = version === v.id;
+              return (
+                <div key={v.id} onClick={() => setVersion(v.id)} style={{ background: isActive ? "#fff" : "rgba(255,255,255,0.15)", border: "2px solid " + (isActive ? yellow : "rgba(255,255,255,0.5)"), borderRadius: 16, padding: "18px 20px", cursor: "pointer", transition: "all .2s", boxShadow: isActive ? "0 6px 20px rgba(0,0,0,0.15)" : "none" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+                    <span style={{ fontWeight: 800, fontSize: "1rem", color: isActive ? blue : "#fff" }}>{v.title}</span>
+                    <div style={{ marginLeft: "auto", width: 22, height: 22, borderRadius: "50%", border: "2px solid " + (isActive ? yellow : "rgba(255,255,255,0.7)"), background: isActive ? yellow : "transparent", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      {isActive && <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#fff" }} />}
+                    </div>
+                  </div>
+                  <p style={{ fontSize: "0.85rem", lineHeight: 1.45, color: isActive ? "#555" : "rgba(255,255,255,0.85)", margin: 0 }}>{v.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+          <button onClick={() => onStart(version)} style={{ background: yellow, color: "#fff", border: "none", borderRadius: 99, padding: "18px 56px", fontSize: "1.1rem", fontWeight: 800, letterSpacing: "0.06em", textTransform: "uppercase", cursor: "pointer", boxShadow: "0 6px 24px rgba(235,166,20,0.45)" }}>
+            {version === "checklist" ? "START CHECKLIST" : "TAKE THE QUIZ"}
           </button>
         </div>
       </div>
@@ -627,22 +679,83 @@ function ResultsPage({ answers, onBack, onRetake, onViewDetail }) {
   );
 }
 
+// ── Checklist Page ────────────────────────────────────────────
+function ChecklistPage({ onBack, onSubmit }) {
+  const [checked, setChecked] = useState({});
+
+  function toggle(item) {
+    setChecked(c => ({ ...c, [item.id]: c[item.id] ? undefined : item }));
+  }
+
+  const selected = Object.values(checked).filter(Boolean);
+
+  function handleSubmit() {
+    onSubmit(selected.map(item => ({ id: item.id, methods: item.methods })));
+  }
+
+  return (
+    <div style={{ background: bg, minHeight: "100vh" }}>
+      <div style={{ background: "linear-gradient(180deg, #5a9de0 0%, #7ab3ef 100%)", padding: "180px 20px 40px", textAlign: "center", position: "relative", overflow: "hidden" }}>
+        <img src="/img/mbackground.webp" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.25 }} />
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <h1 style={{ fontSize: "clamp(2rem, 4.5vw, 2.625rem)", fontWeight: 800, color: "#fff", marginBottom: 8 }}>Quick Checklist</h1>
+          <p style={{ color: "rgba(255,255,255,0.9)", fontSize: "1rem" }}>Tick everything that applies to you, then see your matches.</p>
+        </div>
+      </div>
+
+      <div style={{ maxWidth: 760, margin: "0 auto", padding: "28px 20px 160px" }}>
+        <div style={{ background: "#fff", borderRadius: 20, padding: "22px", marginBottom: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {CHECKLIST_ITEMS.map(item => {
+              const isChecked = !!checked[item.id];
+              return (
+                <div key={item.id} onClick={() => toggle(item)} style={{ background: isChecked ? blue : "#f7faff", border: "1.5px solid " + (isChecked ? blue : "#e3edfb"), borderRadius: 12, padding: "16px 18px", cursor: "pointer", display: "flex", alignItems: "center", gap: 14, transition: "all .2s", boxShadow: isChecked ? "0 4px 14px rgba(61,128,232,0.25)" : "none" }}>
+                  <div style={{ width: 24, height: 24, borderRadius: 7, border: "2px solid " + (isChecked ? "#fff" : blue), background: isChecked ? "#fff" : "transparent", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    {isChecked && <span style={{ color: blue, fontWeight: 900, fontSize: "0.9rem", lineHeight: 1 }}>✓</span>}
+                  </div>
+                  <span style={{ color: isChecked ? "#fff" : "#333", fontWeight: 600, fontSize: "0.938rem", lineHeight: 1.35 }}>{item.label}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div style={{ background: "rgba(255,255,255,0.6)", borderRadius: 14, padding: "16px 20px", marginTop: 8 }}>
+          <p style={{ color: "#555", fontSize: "0.875rem", lineHeight: 1.6, margin: 0, textAlign: "center" }}>
+            ⚠️ This quiz is for information only and does not replace medical advice. Please speak to a healthcare provider before starting any HIV prevention method.
+          </p>
+        </div>
+      </div>
+
+      <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, background: "rgba(255,255,255,0.95)", backdropFilter: "blur(12px)", borderTop: "1px solid rgba(61,128,232,0.15)", padding: "16px 24px", display: "flex", justifyContent: "space-between", alignItems: "center", zIndex: 100 }}>
+        <button onClick={onBack} style={{ background: "transparent", color: blue, border: "2px solid " + blue, borderRadius: 99, padding: "12px 28px", fontWeight: 700, fontSize: "0.95rem", cursor: "pointer" }}>← Back</button>
+        <button onClick={handleSubmit} disabled={selected.length === 0} style={{ background: selected.length ? yellow : "rgba(235,166,20,0.3)", color: "#fff", border: "none", borderRadius: 99, padding: "12px 36px", fontWeight: 800, fontSize: "0.95rem", letterSpacing: ".04em", textTransform: "uppercase", cursor: selected.length ? "pointer" : "not-allowed", transition: "all .2s", boxShadow: selected.length ? "0 4px 16px rgba(235,166,20,0.4)" : "none" }}>
+          See Results ({selected.length}) →
+        </button>
+      </div>
+    </div>
+  );
+}
+
 // ── Main ──────────────────────────────────────────────────────
 export default function Quiz() {
   const [step,      setStep]      = useState("landing");
+  const [version,   setVersion]   = useState("quiz");
   const [answers,   setAnswers]   = useState([]);
   const [detailKey, setDetailKey] = useState(null);
 
+  function handleStart(v) { setVersion(v); setStep(v); }
   function handleSubmit(ans) { setAnswers(ans); setStep("results"); }
   function handleViewDetail(key) { setDetailKey(key); setStep("detail"); }
 
   return (
     <>
       <Navbar />
-      {step === "landing" && <LandingPage onStart={() => setStep("quiz")} />}
-      {step === "quiz"    && <QuizPage onBack={() => setStep("landing")} onSubmit={handleSubmit} />}
-      {step === "results" && <ResultsPage answers={answers} onBack={() => setStep("quiz")} onRetake={() => { setAnswers([]); setStep("landing"); }} onViewDetail={handleViewDetail} />}
-      {step === "detail"  && <MethodDetailPage methodKey={detailKey} onBack={() => setStep("results")} />}
+      {step === "landing"   && <LandingPage onStart={handleStart} />}
+      {step === "quiz"      && <QuizPage onBack={() => setStep("landing")} onSubmit={handleSubmit} />}
+      {step === "checklist" && <ChecklistPage onBack={() => setStep("landing")} onSubmit={handleSubmit} />}
+      {step === "results"   && <ResultsPage answers={answers} onBack={() => setStep(version)} onRetake={() => { setAnswers([]); setStep("landing"); }} onViewDetail={handleViewDetail} />}
+      {step === "detail"    && <MethodDetailPage methodKey={detailKey} onBack={() => setStep("results")} />}
     </>
   );
 }
